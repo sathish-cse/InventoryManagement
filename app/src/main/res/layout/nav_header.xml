@@ -35,7 +35,7 @@
         android:layout_gravity="center"
         android:orientation="vertical">
 
-    <tech42.sathish.inventorymanagement.customfonts.MyTextView
+    <tech42.sathish.inventorymanagement.customfonts.CustomFontsTextView
         android:id="@+id/name"
         android:textColor="@color/white"
         android:textSize="20sp"
@@ -46,7 +46,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-        <tech42.sathish.inventorymanagement.customfonts.MyTextView
+        <tech42.sathish.inventorymanagement.customfonts.CustomFontsTextView
             android:id="@+id/id"
             android:textColor="@color/white"
             android:textSize="15sp"

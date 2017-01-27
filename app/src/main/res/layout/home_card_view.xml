@@ -26,7 +26,7 @@
             android:layout_gravity="center"
             android:src="@drawable/in" />
 
-        <tech42.sathish.inventorymanagement.customfonts.MyTextView
+        <tech42.sathish.inventorymanagement.customfonts.CustomFontsTextView
             android:id="@+id/tv_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

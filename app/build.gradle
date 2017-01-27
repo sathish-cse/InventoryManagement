@@ -52,6 +52,9 @@ dependencies {
     // Firebase UI
     compile 'com.firebaseui:firebase-ui-auth:0.6.0'
 
+    // Material spinner
+    compile 'com.weiwangcn.betterspinner:library-material:1.1.0'
+
 }
 
 apply plugin: 'com.google.gms.google-services'

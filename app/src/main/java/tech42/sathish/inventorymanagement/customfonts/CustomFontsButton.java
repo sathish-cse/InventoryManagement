@@ -5,19 +5,19 @@ import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.widget.Button;
 
-public class MyButton extends Button {
+public class CustomFontsButton extends Button {
 
-    public MyButton(Context context, AttributeSet attrs, int defStyle) {
+    public CustomFontsButton(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         init();
     }
 
-    public MyButton(Context context, AttributeSet attrs) {
+    public CustomFontsButton(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
     }
 
-    public MyButton(Context context) {
+    public CustomFontsButton(Context context) {
         super(context);
         init();
     }

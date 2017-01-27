@@ -3,21 +3,21 @@ package tech42.sathish.inventorymanagement.customfonts;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
-import android.widget.EditText;
+import android.widget.TextView;
 
-public class MyEditText extends EditText {
+public class CustomFontsTextView extends TextView {
 
-    public MyEditText(Context context, AttributeSet attrs, int defStyle) {
+    public CustomFontsTextView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         init();
     }
 
-    public MyEditText(Context context, AttributeSet attrs) {
+    public CustomFontsTextView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
     }
 
-    public MyEditText(Context context) {
+    public CustomFontsTextView(Context context) {
         super(context);
         init();
     }

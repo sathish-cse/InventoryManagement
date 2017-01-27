@@ -13,5 +13,6 @@ public class Constant {
     public static final String LOCAITONS = "Locations";
     public static final String PRODUCTS = "Products";
     public static final String REPORT = "Report";
+    public static final String CONNECTION = "connetion";
 
 }

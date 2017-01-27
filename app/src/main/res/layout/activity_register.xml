@@ -36,7 +36,7 @@
             android:orientation="vertical"
             android:layout_weight="0.5">
 
-            <tech42.sathish.inventorymanagement.customfonts.MyTextView
+            <tech42.sathish.inventorymanagement.customfonts.CustomFontsTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="30dp"
@@ -82,7 +82,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/colortext">
 
-                    <tech42.sathish.inventorymanagement.customfonts.MyEditText
+                    <tech42.sathish.inventorymanagement.customfonts.CustomFontsEditText
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:id="@+id/email"
@@ -121,7 +121,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/colortext">
 
-                    <tech42.sathish.inventorymanagement.customfonts.MyEditText
+                    <tech42.sathish.inventorymanagement.customfonts.CustomFontsEditText
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:id="@+id/name"
@@ -160,7 +160,7 @@
                     android:layout_marginTop="5dp"
                     android:textColor="@color/colortext">
 
-                    <tech42.sathish.inventorymanagement.customfonts.MyEditText
+                    <tech42.sathish.inventorymanagement.customfonts.CustomFontsEditText
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:id="@+id/password"
@@ -181,7 +181,7 @@
                 android:layout_height="0dp"
                 android:layout_weight="0.6"/>
 
-            <tech42.sathish.inventorymanagement.customfonts.MyButton
+            <tech42.sathish.inventorymanagement.customfonts.CustomFontsButton
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
