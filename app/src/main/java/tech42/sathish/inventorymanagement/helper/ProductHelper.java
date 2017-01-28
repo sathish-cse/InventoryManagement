@@ -21,7 +21,7 @@ import tech42.sathish.inventorymanagement.model.Product;
 public class ProductHelper {
 
     private DatabaseReference db;
-    private Boolean saved;
+    private Boolean saved,updated;
     private ArrayList<Product> products=new ArrayList<>();
 
     /*
@@ -31,7 +31,7 @@ public class ProductHelper {
         this.db = db;
     }
 
-    //WRITE IF NOT NULL
+    // ADD DATA IF NOT NULL
     public Boolean save(Product product)
     {
         if(product==null)
@@ -41,7 +41,7 @@ public class ProductHelper {
         {
             try
             {
-                db.child(Constant.PRODUCT).push().setValue(product);
+                db.child(Constant.PRODUCT).child(product.getItem()).setValue(product);
                 saved=true;
             }catch (DatabaseException e)
             {
@@ -50,6 +50,64 @@ public class ProductHelper {
             }
         }
         return saved;
+    }
+
+    // ADD IMPORT TRANSACTIONS IF NOT NULL
+    public Boolean addImportTransaction(Product product)
+    {
+        if(product==null)
+        {
+            saved=false;
+        }else
+        {
+            try
+            {
+                db.child(Constant.IMPORT_TRANSACTIONS).child(product.getItem()).setValue(product);
+                saved=true;
+            }catch (DatabaseException e)
+            {
+                e.printStackTrace();
+                saved=false;
+            }
+        }
+        return saved;
+    }
+
+    // ADD IMPORT TRANSACTIONS IF NOT NULL
+    public Boolean addExportTransaction(Product product)
+    {
+        if(product==null)
+        {
+            saved=false;
+        }else
+        {
+            try
+            {
+                db.child(Constant.EXPORT_TRANSACTIONS).child(product.getItem()).setValue(product);
+                saved=true;
+            }catch (DatabaseException e)
+            {
+                e.printStackTrace();
+                saved=false;
+            }
+        }
+        return saved;
+    }
+
+    // UPDATE IF NOT NULL
+    public Boolean update(Product product)
+    {
+            try
+            {
+                db.child(Constant.PRODUCT).child(product.getItem()).setValue(product);
+                updated=true;
+            }catch (DatabaseException e)
+            {
+                e.printStackTrace();
+                updated=false;
+            }
+
+        return updated;
     }
 
     // IMPLEMENT FETCH DATA AND FILL ARRAYLIST

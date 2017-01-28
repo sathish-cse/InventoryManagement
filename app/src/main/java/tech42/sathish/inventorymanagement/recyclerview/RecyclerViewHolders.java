@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import tech42.sathish.inventorymanagement.R;
+import tech42.sathish.inventorymanagement.activity.ExportActivity;
 import tech42.sathish.inventorymanagement.activity.ImportActivity;
 import tech42.sathish.inventorymanagement.activity.ProductsActivity;
 
@@ -38,8 +39,9 @@ public class RecyclerViewHolders extends RecyclerView.ViewHolder implements View
         Context context = view.getContext();
         if ( position == 0 )
             gotoNextActivity = new Intent(context, ImportActivity.class);
-
-        else if ( position == 4)
+        if ( position == 1 )
+            gotoNextActivity = new Intent(context, ExportActivity.class);
+        else if ( position == 2)
             gotoNextActivity = new Intent(context, ProductsActivity.class);
 
         context.startActivity(gotoNextActivity);

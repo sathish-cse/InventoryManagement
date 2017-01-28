@@ -53,7 +53,7 @@ public class ProductCustomAdapter extends RecyclerView.Adapter<ProductCustomAdap
         holder.getItem().setText(product.getItem());
 
         // Set location
-        holder.getLocation().setText(product.getLocation());
+        holder.getLocation().setText(product.getQuantity() + product.getUnit());
     }
 
     @Override

@@ -5,40 +5,34 @@ package tech42.sathish.inventorymanagement.model;
  */
 
 public class Product {
-    private String item,location;
-    private int quantity;
-    private String productid;
-
+    public String seller,buyer;
+    public String quantity;
+    public String productid;
+    public String price;
+    public String unit;
+    public String date;
+    public String item;
 
     public Product()
     {}
 
-    public String getItem()
+    public String getSeller()
     {
-        return item;
+        return seller;
     }
 
-    public String getLocation()
-    {
-        return location;
-    }
-
-    public int getQuantity()
+    public String getQuantity()
     {
         return quantity;
     }
 
-    public void setItem(String item)
+    public void setSeller(String seller)
     {
-        this.item = item;
+        this.seller = seller;
     }
 
-    public void setLocation(String location)
-    {
-        this.location = location;
-    }
 
-    public void setQuantity(int quantity)
+    public void setQuantity(String quantity)
     {
         this.quantity = quantity;
     }
@@ -51,6 +45,59 @@ public class Product {
     public void setProductid(String productid)
     {
         this.productid = productid;
+    }
+
+    public String getPrice()
+    {
+        return price;
+    }
+
+
+    public String getUnit()
+    {
+        return unit;
+    }
+
+
+    public String getDate()
+    {
+        return date;
+    }
+
+
+    public String getItem()
+    {
+        return item;
+    }
+
+    public void setPrice(String price)
+    {
+        this.price = price;
+    }
+
+    public void setUnit(String unit)
+    {
+        this.unit = unit;
+    }
+
+    public void setDate(String date)
+    {
+        this.date = date;
+    }
+
+    public void setItem(String item)
+    {
+        this.item = item;
+    }
+
+    public String getBuyer()
+    {
+        return buyer;
+    }
+
+    public void setBuyer(String buyer)
+    {
+        this.buyer = buyer;
     }
 }
 

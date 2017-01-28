@@ -20,9 +20,11 @@
         </activity>
         <activity android:name=".activity.RegisterActivity" />
         <activity android:name=".activity.ImportActivity" />
-        <activity android:name=".activity.ProductsActivity"
+        <activity
+            android:name=".activity.ProductsActivity"
             android:label="Products"
-            android:theme="@style/AppTheme2"/>
+            android:theme="@style/AppTheme2" />
+        <activity android:name=".activity.ExportActivity"></activity>
     </application>
 
 </manifest>

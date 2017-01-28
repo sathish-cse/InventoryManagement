@@ -5,7 +5,7 @@
     android:id="@+id/activity_intro_screen"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.ImportActivity">
+    tools:context=".activity.ExportActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -37,7 +37,7 @@
                 android:textSize="30dp"
                 android:gravity="center"
                 android:id="@+id/account_text"
-                android:text="Item Import"/>
+                android:text="Item Export"/>
 
         </LinearLayout>
 
@@ -80,6 +80,8 @@
                         android:singleLine="true"
                         android:imeOptions="actionNext"
                         android:background="@android:color/transparent"
+                        android:drawableRight="@drawable/search"
+                        android:layout_marginRight="20dp"
                         android:hint="Item"/>
 
                 </android.support.design.widget.TextInputLayout>
@@ -110,15 +112,16 @@
 
                     <tech42.sathish.inventorymanagement.customfonts.CustomFontsEditText
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:id="@+id/seller"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/buyer"
                         android:layout_marginTop="3dp"
                         android:drawablePadding="20dp"
                         android:paddingLeft="20dp"
+                        android:inputType="number"
                         android:singleLine="true"
                         android:imeOptions="actionNext"
                         android:background="@android:color/transparent"
-                        android:hint="Seller Name"/>
+                        android:hint="Buyer Name"/>
 
                 </android.support.design.widget.TextInputLayout>
 
@@ -178,17 +181,17 @@
                 android:orientation="vertical">
 
 
-                    <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
-                        android:id="@+id/unit"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="20dp"
-                        android:hint="Quantity Unit"
-                        android:background="@android:color/transparent"
-                        android:textColorHint="@color/colorhint"
-                        android:textColor="@color/colortext"
-                        app:met_floatingLabel="normal" />
+                <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+                    android:id="@+id/unit"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:hint="Quantity Unit"
+                    android:background="@android:color/transparent"
+                    android:textColorHint="@color/colorhint"
+                    android:textColor="@color/colortext"
+                    app:met_floatingLabel="normal" />
 
 
             </LinearLayout>
@@ -222,8 +225,8 @@
                         android:layout_marginTop="3dp"
                         android:drawablePadding="20dp"
                         android:paddingLeft="20dp"
-                        android:inputType="number"
                         android:singleLine="true"
+                        android:inputType="number"
                         android:imeOptions="actionDone"
                         android:background="@android:color/transparent"
                         android:hint="Price"/>
@@ -249,7 +252,7 @@
                 android:textAllCaps="false"
                 android:background="@drawable/button_background"
                 android:textColor="#fcfcfc"
-                android:text="Import"/>
+                android:text="Export"/>
 
             <View
                 android:layout_width="match_parent"
