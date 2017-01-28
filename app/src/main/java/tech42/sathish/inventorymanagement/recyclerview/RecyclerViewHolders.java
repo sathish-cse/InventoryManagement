@@ -10,15 +10,17 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import tech42.sathish.inventorymanagement.R;
 import tech42.sathish.inventorymanagement.activity.ImportActivity;
+import tech42.sathish.inventorymanagement.activity.ProductsActivity;
 
 public class RecyclerViewHolders extends RecyclerView.ViewHolder implements View.OnClickListener{
 
     public TextView menuName;
     public ImageView menuImage;
+    private Integer position;
+    private Intent gotoNextActivity;
 
     public RecyclerViewHolders(View itemView) {
         super(itemView);
@@ -30,10 +32,16 @@ public class RecyclerViewHolders extends RecyclerView.ViewHolder implements View
 
     @Override
     public void onClick(View view) {
-        Toast.makeText(view.getContext(), "Clicked Country Position" + getPosition(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(view.getContext(), "Clicked Country Position" + getPosition(), Toast.LENGTH_SHORT).show();
+        position = getPosition();
 
         Context context = view.getContext();
-        Intent intent = new Intent(context, ImportActivity.class);
-        context.startActivity(intent);
+        if ( position == 0 )
+            gotoNextActivity = new Intent(context, ImportActivity.class);
+
+        else if ( position == 4)
+            gotoNextActivity = new Intent(context, ProductsActivity.class);
+
+        context.startActivity(gotoNextActivity);
     }
 }

@@ -7,13 +7,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import tech42.sathish.inventorymanagement.R;
-import tech42.sathish.inventorymanagement.customadapter.ProductCustomAdapter;
-import tech42.sathish.inventorymanagement.helper.FirebaseHelper;
+import tech42.sathish.inventorymanagement.helper.ProductHelper;
 import tech42.sathish.inventorymanagement.model.Product;
 
 /*
@@ -25,8 +23,7 @@ import tech42.sathish.inventorymanagement.model.Product;
 public class ImportActivity extends AppCompatActivity implements View.OnClickListener{
 
     DatabaseReference databaseReference;
-    FirebaseHelper firebaseHelper;
-    ProductCustomAdapter productCustomAdapter;
+    ProductHelper firebaseHelper;
     private EditText edittext_item,edittext_quantity,edittext_location;
     private Button button_import;
     private String string_item,string_location;
@@ -37,14 +34,14 @@ public class ImportActivity extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_import);
 
-        intializeFirebaseDatabase();
+        initializeFirebaseDatabase();
         findViews();
     }
 
-    private void intializeFirebaseDatabase()
+    private void initializeFirebaseDatabase()
     {
         databaseReference = FirebaseDatabase.getInstance().getReference();
-        firebaseHelper = new FirebaseHelper(databaseReference);
+        firebaseHelper = new ProductHelper(databaseReference);
     }
 
     private void findViews()
@@ -76,20 +73,22 @@ public class ImportActivity extends AppCompatActivity implements View.OnClickLis
 
     private void setData()
     {
-       // if(editTextValidation())
-        //{
-            Product product = new Product();
+        Product product = new Product();
+        if(editTextValidation())
+        {
             product.setItem( string_item );
             product.setLocation( string_location );
             product.setQuantity( int_quantity );
-        //}
-        //else
-          //  Toast.makeText(getApplicationContext(),"Details must not be empty..",Toast.LENGTH_SHORT).show();
-
-        if(firebaseHelper.save(product))
-            Toast.makeText(getApplicationContext(),"Product saved successfully..",Toast.LENGTH_SHORT).show();
+        }
         else
-            Toast.makeText(getApplicationContext(),"Product didn't save..",Toast.LENGTH_SHORT).show();
+           Toast.makeText(getApplicationContext(),"Details must not be empty..",Toast.LENGTH_SHORT).show();
+
+        if(firebaseHelper.save(product)) {
+            clearEditText();
+            Toast.makeText(getApplicationContext(), "Product saved successfully..", Toast.LENGTH_LONG).show();
+        }
+        else
+            Toast.makeText(getApplicationContext(),"Product didn't save..",Toast.LENGTH_LONG).show();
 
     }
 
@@ -99,5 +98,12 @@ public class ImportActivity extends AppCompatActivity implements View.OnClickLis
             return false;
         else
             return true;
+    }
+
+    private void clearEditText()
+    {
+        edittext_location.setText("");
+        edittext_quantity.setText("");
+        edittext_item.setText("");
     }
 }

@@ -15,29 +15,33 @@ import com.google.firebase.database.DatabaseReference;
 
 import java.util.ArrayList;
 
+import tech42.sathish.inventorymanagement.constant.Constant;
 import tech42.sathish.inventorymanagement.model.Product;
 
-public class FirebaseHelper {
-    DatabaseReference db;
-    Boolean saved;
-    ArrayList<Product> spacecrafts=new ArrayList<>();
+public class ProductHelper {
+
+    private DatabaseReference db;
+    private Boolean saved;
+    private ArrayList<Product> products=new ArrayList<>();
+
     /*
- PASS DATABASE REFRENCE
+       PASS DATABASE REFRENCE
   */
-    public FirebaseHelper(DatabaseReference db) {
+    public ProductHelper(DatabaseReference db) {
         this.db = db;
     }
+
     //WRITE IF NOT NULL
-    public Boolean save(Product Product)
+    public Boolean save(Product product)
     {
-        if(Product==null)
+        if(product==null)
         {
             saved=false;
         }else
         {
             try
             {
-                db.child("Product").push().setValue(Product);
+                db.child(Constant.PRODUCT).push().setValue(product);
                 saved=true;
             }catch (DatabaseException e)
             {
@@ -47,17 +51,17 @@ public class FirebaseHelper {
         }
         return saved;
     }
-    //IMPLEMENT FETCH DATA AND FILL ARRAYLIST
+
+    // IMPLEMENT FETCH DATA AND FILL ARRAYLIST
     private void fetchData(DataSnapshot dataSnapshot)
     {
-        spacecrafts.clear();
-        for (DataSnapshot ds : dataSnapshot.getChildren())
-        {
-            Product Product=ds.getValue(Product.class);
-            spacecrafts.add(Product);
-        }
+        products.clear();
+        Product product = dataSnapshot.getValue(Product.class);
+        products.add(product);
+
     }
-    //RETRIEVE
+
+    // RETRIEVE
     public ArrayList<Product> retrieve()
     {
         db.addChildEventListener(new ChildEventListener() {
@@ -79,6 +83,6 @@ public class FirebaseHelper {
             public void onCancelled(DatabaseError databaseError) {
             }
         });
-        return spacecrafts;
+        return products;
     }
 }

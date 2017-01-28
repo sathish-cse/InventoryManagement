@@ -7,6 +7,8 @@ package tech42.sathish.inventorymanagement.model;
 public class Product {
     private String item,location;
     private int quantity;
+    private String productid;
+
 
     public Product()
     {}
@@ -39,6 +41,16 @@ public class Product {
     public void setQuantity(int quantity)
     {
         this.quantity = quantity;
+    }
+
+    public String getProductid()
+    {
+        return productid;
+    }
+
+    public void setProductid(String productid)
+    {
+        this.productid = productid;
     }
 }
 
