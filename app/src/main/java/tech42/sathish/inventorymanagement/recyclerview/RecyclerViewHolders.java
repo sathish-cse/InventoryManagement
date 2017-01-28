@@ -14,35 +14,46 @@ import android.widget.TextView;
 import tech42.sathish.inventorymanagement.R;
 import tech42.sathish.inventorymanagement.activity.ExportActivity;
 import tech42.sathish.inventorymanagement.activity.ImportActivity;
+import tech42.sathish.inventorymanagement.activity.ImportTransaction;
 import tech42.sathish.inventorymanagement.activity.ProductsActivity;
+import tech42.sathish.inventorymanagement.activity.ReportsActivity;
 
-public class RecyclerViewHolders extends RecyclerView.ViewHolder implements View.OnClickListener{
+class RecyclerViewHolders extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-    public TextView menuName;
-    public ImageView menuImage;
-    private Integer position;
+    TextView menuName;
+    ImageView menuImage;
     private Intent gotoNextActivity;
 
-    public RecyclerViewHolders(View itemView) {
+    RecyclerViewHolders(View itemView) {
         super(itemView);
 
         itemView.setOnClickListener(this);
+
         menuName = (TextView)itemView.findViewById(R.id.tv_name);
         menuImage = (ImageView)itemView.findViewById(R.id.iv_image);
     }
 
     @Override
     public void onClick(View view) {
-        //Toast.makeText(view.getContext(), "Clicked Country Position" + getPosition(), Toast.LENGTH_SHORT).show();
-        position = getPosition();
 
         Context context = view.getContext();
-        if ( position == 0 )
+        if ( getPosition() == 0 )
             gotoNextActivity = new Intent(context, ImportActivity.class);
-        if ( position == 1 )
+
+        if ( getPosition() == 1 )
             gotoNextActivity = new Intent(context, ExportActivity.class);
-        else if ( position == 2)
+
+        else if ( getPosition() == 2)
             gotoNextActivity = new Intent(context, ProductsActivity.class);
+
+        else if ( getPosition() == 3)
+            gotoNextActivity = new Intent(context, ImportTransaction.class);
+
+        else if ( getPosition() == 4)
+            gotoNextActivity = new Intent(context, ExportActivity.class);
+
+        else if ( getPosition() == 5)
+            gotoNextActivity = new Intent(context, ReportsActivity.class);
 
         context.startActivity(gotoNextActivity);
     }

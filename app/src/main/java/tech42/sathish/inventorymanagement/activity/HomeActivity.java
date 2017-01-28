@@ -122,8 +122,9 @@ public class HomeActivity extends AppCompatActivity {
         allItems.add(new ItemObject(Constant.IMPORT, R.drawable.in));
         allItems.add(new ItemObject(Constant.EXPORT, R.drawable.out));
         allItems.add(new ItemObject(Constant.PRODUCTS, R.drawable.products));
-        allItems.add(new ItemObject(Constant.TRANSACTION, R.drawable.move));
-
+        allItems.add(new ItemObject(Constant.IMPORT_TRANSACTIONS, R.drawable.move));
+        allItems.add(new ItemObject(Constant.EXPORT_TRANSACTIONS, R.drawable.move));
+        allItems.add(new ItemObject(Constant.REPORT, R.drawable.report));
         return allItems;
     }
 

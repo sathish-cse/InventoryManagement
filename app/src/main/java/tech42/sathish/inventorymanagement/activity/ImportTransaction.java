@@ -25,11 +25,11 @@ import java.util.List;
 
 import tech42.sathish.inventorymanagement.R;
 import tech42.sathish.inventorymanagement.constant.Constant;
-import tech42.sathish.inventorymanagement.customadapter.ProductCustomAdapter;
+import tech42.sathish.inventorymanagement.customadapter.TransactionCustomAdapter;
 import tech42.sathish.inventorymanagement.model.Product;
 
 
-public class ProductsActivity extends AppCompatActivity {
+public class ImportTransaction extends AppCompatActivity {
 
     private ProgressBar mProgressBarForProducts;
     private RecyclerView mProductRecyclerView;
@@ -41,19 +41,19 @@ public class ProductsActivity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener mAuthListener;
     private DatabaseReference mProductDatabaseReference;
     private ChildEventListener mChildEventListener;
-    private ProductCustomAdapter ProductCustomAdapter;
+    private TransactionCustomAdapter TransactionCustomAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_products);
+        setContentView(R.layout.activity_import_transaction);
 
         mProgressBarForProducts = (ProgressBar)findViewById(R.id.progress_bar_users);
         mProductRecyclerView = (RecyclerView)findViewById(R.id.recycler_view_users);
 
 
         ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Fetching Product Details..");
+        progressDialog.setMessage("Fetching Transaction Details..");
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
 
@@ -73,14 +73,14 @@ public class ProductsActivity extends AppCompatActivity {
     }
 
     private void setUsersDatabase() {
-        mProductDatabaseReference = FirebaseDatabase.getInstance().getReference().child(Constant.PRODUCT);
+        mProductDatabaseReference = FirebaseDatabase.getInstance().getReference().child(Constant.IMPORT_TRANSACTIONS);
     }
 
     private void setUserRecyclerView() {
-        ProductCustomAdapter = new ProductCustomAdapter(this, new ArrayList<Product>());
+        TransactionCustomAdapter = new TransactionCustomAdapter(this, new ArrayList<Product>());
         mProductRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mProductRecyclerView.setHasFixedSize(true);
-        mProductRecyclerView.setAdapter(ProductCustomAdapter);
+        mProductRecyclerView.setAdapter(TransactionCustomAdapter);
     }
 
     private void setUsersKeyList() {
@@ -146,11 +146,18 @@ public class ProductsActivity extends AppCompatActivity {
     }
 
     private void clearCurrentUsers() {
-        ProductCustomAdapter.clear();
+        TransactionCustomAdapter.clear();
         mUsersKeyList.clear();
     }
 
-   
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+
     private void showProgressBarForUsers(){
         mProgressBarForProducts.setVisibility(View.VISIBLE);
     }
@@ -177,7 +184,7 @@ public class ProductsActivity extends AppCompatActivity {
                         Product recipient = dataSnapshot.getValue(Product.class);
                         recipient.setProductid(userUid);
                         mUsersKeyList.add(userUid);
-                        ProductCustomAdapter.refill(recipient);
+                        TransactionCustomAdapter.refill(recipient);
                     }
                 }
 
@@ -193,7 +200,7 @@ public class ProductsActivity extends AppCompatActivity {
 
                         int index = mUsersKeyList.indexOf(userUid);
                         if(index > -1) {
-                            ProductCustomAdapter.changeUser(index, user);
+                            TransactionCustomAdapter.changeUser(index, user);
                         }
                     }
 

@@ -24,7 +24,14 @@
             android:name=".activity.ProductsActivity"
             android:label="Products"
             android:theme="@style/AppTheme2" />
-        <activity android:name=".activity.ExportActivity"></activity>
+        <activity android:name=".activity.ExportActivity" />
+        <activity android:name=".activity.ImportTransaction"
+            android:label="Import Transaction"
+            android:theme="@style/AppTheme2"/>
+        <activity android:name=".activity.ExportTransactions"
+            android:label="Export Transaction"
+            android:theme="@style/AppTheme2"/>
+        <activity android:name=".activity.ReportsActivity"></activity>
     </application>
 
 </manifest>

@@ -117,7 +117,6 @@
                         android:layout_marginTop="3dp"
                         android:drawablePadding="20dp"
                         android:paddingLeft="20dp"
-                        android:inputType="number"
                         android:singleLine="true"
                         android:imeOptions="actionNext"
                         android:background="@android:color/transparent"
@@ -166,35 +165,6 @@
 
             </LinearLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.3"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1.2"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:background="@drawable/rectangle_background"
-                android:orientation="vertical">
-
-
-                <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
-                    android:id="@+id/unit"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:hint="Quantity Unit"
-                    android:background="@android:color/transparent"
-                    android:textColorHint="@color/colorhint"
-                    android:textColor="@color/colortext"
-                    app:met_floatingLabel="normal" />
-
-
-            </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
@@ -234,6 +204,37 @@
                 </android.support.design.widget.TextInputLayout>
 
             </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.3"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1.2"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/rectangle_background"
+                android:orientation="vertical">
+
+
+                <com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner
+                    android:id="@+id/unit"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:hint="Quantity Unit"
+                    android:background="@android:color/transparent"
+                    android:textColorHint="@color/colorhint"
+                    android:textColor="@color/colortext"
+                    app:met_floatingLabel="normal" />
+
+
+            </LinearLayout>
+
 
             <View
                 android:layout_width="match_parent"

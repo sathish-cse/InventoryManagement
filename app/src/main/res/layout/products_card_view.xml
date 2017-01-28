@@ -35,7 +35,7 @@
                 android:layout_height="0dp"
                 android:layout_weight="0.5"/>
 
-            <TextView
+            <tech42.sathish.inventorymanagement.customfonts.CustomFontsTextView
                 android:id="@+id/nameTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
@@ -45,7 +45,7 @@
                 android:textStyle="bold"
                 android:textAllCaps="true" />
 
-            <TextView
+            <tech42.sathish.inventorymanagement.customfonts.CustomFontsTextView
                 android:id="@+id/locationTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
