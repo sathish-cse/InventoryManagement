@@ -21,7 +21,7 @@
             android:id="@+id/img_avatar"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/product"
+            android:src="@drawable/icon"
             android:layout_margin="10dp"/>
 
         <LinearLayout
@@ -35,12 +35,12 @@
                 android:layout_height="0dp"
                 android:layout_weight="0.5"/>
 
-            <tech42.sathish.inventorymanagement.customfonts.CustomFontsTextView
+            <TextView
                 android:id="@+id/nameTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                tools:text="Sathish"
+                tools:text="Product"
                 android:textSize="18dp"
                 android:textStyle="bold"
                 android:textAllCaps="true" />
@@ -51,7 +51,7 @@
                 android:layout_height="0dp"
                 android:textSize="14dp"
                 android:layout_weight="1"
-                tools:text="Online" />
+                tools:text="Quantity" />
 
             <View
                 android:layout_width="match_parent"

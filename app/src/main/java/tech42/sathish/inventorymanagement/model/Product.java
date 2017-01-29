@@ -31,15 +31,9 @@ public class Product {
         this.seller = seller;
     }
 
-
     public void setQuantity(String quantity)
     {
         this.quantity = quantity;
-    }
-
-    public String getProductid()
-    {
-        return productid;
     }
 
     public void setProductid(String productid)
@@ -52,18 +46,15 @@ public class Product {
         return price;
     }
 
-
     public String getUnit()
     {
         return unit;
     }
 
-
     public String getDate()
     {
         return date;
     }
-
 
     public String getItem()
     {
@@ -99,5 +90,6 @@ public class Product {
     {
         this.buyer = buyer;
     }
+
 }
 

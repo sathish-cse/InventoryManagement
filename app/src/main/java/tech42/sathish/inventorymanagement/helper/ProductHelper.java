@@ -53,7 +53,7 @@ public class ProductHelper {
     }
 
     // ADD IMPORT TRANSACTIONS IF NOT NULL
-    public Boolean addImportTransaction(Product product)
+    public Boolean addImportTransaction(Integer count,Product product)
     {
         if(product==null)
         {
@@ -62,7 +62,7 @@ public class ProductHelper {
         {
             try
             {
-                db.child(Constant.IMPORT_TRANSACTIONS).child(product.getItem()).setValue(product);
+                db.child(Constant.IMPORT_TRANSACTIONS).child(count.toString()).setValue(product);
                 saved=true;
             }catch (DatabaseException e)
             {
@@ -74,7 +74,7 @@ public class ProductHelper {
     }
 
     // ADD IMPORT TRANSACTIONS IF NOT NULL
-    public Boolean addExportTransaction(Product product)
+    public Boolean addExportTransaction(Integer count,Product product)
     {
         if(product==null)
         {
@@ -83,7 +83,7 @@ public class ProductHelper {
         {
             try
             {
-                db.child(Constant.EXPORT_TRANSACTIONS).child(product.getItem()).setValue(product);
+                db.child(Constant.EXPORT_TRANSACTIONS).child(count.toString()).setValue(product);
                 saved=true;
             }catch (DatabaseException e)
             {

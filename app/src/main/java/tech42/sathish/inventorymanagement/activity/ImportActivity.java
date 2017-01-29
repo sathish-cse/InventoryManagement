@@ -1,5 +1,6 @@
 package tech42.sathish.inventorymanagement.activity;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,8 +10,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner;
 
 import java.text.SimpleDateFormat;
@@ -32,11 +36,11 @@ public class ImportActivity extends AppCompatActivity implements View.OnClickLis
     DatabaseReference databaseReference;
     ProductHelper firebaseHelper;
     private EditText edittext_item,edittext_quantity,edittext_price,editText_seller;
-    String[] quantity_Unit_Array = {"Number","Kg","Gram","Litre","Ml"};
     private Button button_import;
     private MaterialBetterSpinner unit_materialDesignSpinner;
     private String string_quantity,string_seller,string_unit,string_item,string_price;
-
+    private Integer import_qty,import_price,import_children_count;
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +48,8 @@ public class ImportActivity extends AppCompatActivity implements View.OnClickLis
 
         initializeFirebaseDatabase();
         findViews();
+        getItemCount();
+
     }
 
     private void initializeFirebaseDatabase()
@@ -61,7 +67,7 @@ public class ImportActivity extends AppCompatActivity implements View.OnClickLis
         button_import = (Button)findViewById(R.id.btn_import);
 
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_dropdown_item_1line, quantity_Unit_Array);
+                android.R.layout.simple_dropdown_item_1line, Constant.quantity_Unit_Array);
         unit_materialDesignSpinner = (MaterialBetterSpinner)
                 findViewById(R.id.unit);
         unit_materialDesignSpinner.setAdapter(arrayAdapter);
@@ -75,10 +81,15 @@ public class ImportActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onClick(View v) {
 
+        getData();
+
         if ( v == button_import)
         {
-            getData();
-            setData();
+            if(editTextValidation()) {
+                getItemDetails();
+            }
+            else
+                Toast.makeText(getApplicationContext(),"Details must not be empty..",Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -93,22 +104,28 @@ public class ImportActivity extends AppCompatActivity implements View.OnClickLis
 
     private void setData()
     {
+        // UPDATE PR0DUCT ARRAY
         Product product = new Product();
-        if(editTextValidation())
-        {
             product.setItem( string_item );
-            product.setPrice( string_price );
-            product.setQuantity( string_quantity );
+            product.setPrice( import_price.toString() );
+            product.setQuantity( import_qty.toString() );
             product.setSeller( string_seller );
             product.setUnit( string_unit );
             product.setDate( getCurrentDate() );
-        }
-        else
-           Toast.makeText(getApplicationContext(),"Details must not be empty..",Toast.LENGTH_SHORT).show();
 
-        if(firebaseHelper.save(product) && firebaseHelper.addImportTransaction(product)) {
+        // ADD IMPORT TRANSACTION
+        Product Product = new Product();
+        Product.setItem( string_item );
+        Product.setPrice( string_price );
+        Product.setQuantity( string_quantity );
+        Product.setSeller( string_seller );
+        Product.setUnit( string_unit );
+        Product.setDate( getCurrentDate() );
+
+        if(firebaseHelper.save(product) && firebaseHelper.addImportTransaction(import_children_count,Product)) {
             clearEditText();
             Toast.makeText(getApplicationContext(), "Product saved successfully..", Toast.LENGTH_SHORT).show();
+            refresh();
         }
         else
             Toast.makeText(getApplicationContext(),"Product didn't save..",Toast.LENGTH_SHORT).show();
@@ -139,5 +156,63 @@ public class ImportActivity extends AppCompatActivity implements View.OnClickLis
         SimpleDateFormat df = new SimpleDateFormat(Constant.DATEFORMAT);
 
         return df.format(c.getTime());
+    }
+
+    private void getItemCount()
+    {
+        try {
+            DatabaseReference getChildListener = databaseReference.child(Constant.IMPORT_TRANSACTIONS);
+            getChildListener.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    import_children_count = (int) dataSnapshot.getChildrenCount() ;
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+        }
+        catch (Exception e)
+        {
+            import_children_count = 0;
+        }
+    }
+
+    public void refresh()
+    {
+        Intent refresh = getIntent();
+        finish();
+        startActivity(refresh);
+    }
+
+    private void getItemDetails()
+    {
+            DatabaseReference getChildListener = databaseReference.child(Constant.PRODUCT).child(string_item.toUpperCase());
+            getChildListener.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+
+                    if( dataSnapshot.exists()) {
+                        Product product = dataSnapshot.getValue(Product.class);
+                        import_qty = Integer.parseInt(string_quantity) + Integer.parseInt(product.getQuantity());
+                        import_price = Integer.parseInt(string_price) + Integer.parseInt(product.getPrice());
+                        setData();
+                    }
+                    else
+                    {
+                        import_qty = Integer.parseInt(string_quantity);
+                        import_price = Integer.parseInt(string_price);
+                        setData();
+                    }
+
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
     }
 }

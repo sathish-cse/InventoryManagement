@@ -1,15 +1,19 @@
 package tech42.sathish.inventorymanagement.customadapter;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.List;
 
 import tech42.sathish.inventorymanagement.R;
+import tech42.sathish.inventorymanagement.constant.Constant;
 import tech42.sathish.inventorymanagement.model.Product;
 
 /**
@@ -44,7 +48,7 @@ public class TransactionCustomAdapter extends RecyclerView.Adapter<TransactionCu
         holder.getItem().setText(product.getItem());
 
         // Set Quantity
-        holder.getQuantity().setText(product.getQuantity() + product.getUnit());
+        holder.getQuantity().setText(product.getQuantity() + " " + product.getUnit());
 
         // set Date
         holder.getdate().setText(product.getDate());
@@ -105,17 +109,42 @@ public class TransactionCustomAdapter extends RecyclerView.Adapter<TransactionCu
         @Override
         public void onClick(View view) {
 
-           /* User user = mUsers.get(getLayoutPosition());
 
-            String chatRef = user.createUniqueChatRef(mCurrentUserCreatedAt,mCurrentUserEmail);
 
-            Intent chatIntent = new Intent(mContextViewHolder, ChatActivity.class);
-            chatIntent.putExtra(ExtraIntent.EXTRA_CURRENT_USER_ID, mCurrentUserId);
-            chatIntent.putExtra(ExtraIntent.EXTRA_RECIPIENT_ID, user.getRecipientId());
-            chatIntent.putExtra(ExtraIntent.EXTRA_CHAT_REF, chatRef);
+            Product product = products.get(getLayoutPosition());
 
-            // Start new activity
-            mContextViewHolder.startActivity(chatIntent);*/
+            final Dialog dialog = new Dialog(context);
+
+            //setting custom layout to dialog
+            dialog.setContentView(R.layout.product_details_view_dialog);
+            dialog.setTitle(Constant.IMPORT_TRANSACTIONS);
+            dialog.setCanceledOnTouchOutside(false);
+
+            final EditText edittext_item,edittext_quantity,edittext_price,editText_seller,editText_unit,editText_date;
+
+            edittext_item = (EditText)dialog.findViewById(R.id.item);
+            edittext_quantity = (EditText)dialog.findViewById(R.id.qty);
+            edittext_price = (EditText)dialog.findViewById(R.id.price);
+            editText_seller = (EditText)dialog.findViewById(R.id.seller);
+            editText_unit = (EditText)dialog.findViewById(R.id.unit);
+            editText_date = (EditText)dialog.findViewById(R.id.date);
+
+            edittext_item.setText(product.getItem());
+            edittext_quantity.setText(product.getQuantity());
+            edittext_price.setText(product.getPrice());
+            editText_seller.setText(product.getSeller());
+            editText_unit.setText(product.getUnit());
+            editText_date.setText(product.getDate());
+
+            //adding button click event
+            Button dismissButton = (Button) dialog.findViewById(R.id.btn_ok);
+            dismissButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.dismiss();
+                }
+            });
+            dialog.show();
 
         }
     }

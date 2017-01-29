@@ -1,5 +1,6 @@
 package tech42.sathish.inventorymanagement.customadapter;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -10,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,6 +22,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import tech42.sathish.inventorymanagement.R;
+import tech42.sathish.inventorymanagement.activity.ProductsActivity;
+import tech42.sathish.inventorymanagement.constant.Constant;
 import tech42.sathish.inventorymanagement.model.Product;
 
 /**
@@ -53,7 +58,7 @@ public class ProductCustomAdapter extends RecyclerView.Adapter<ProductCustomAdap
         holder.getItem().setText(product.getItem());
 
         // Set location
-        holder.getLocation().setText(product.getQuantity() + product.getUnit());
+        holder.getLocation().setText(product.getQuantity() + " " + product.getUnit());
     }
 
     @Override
@@ -77,13 +82,13 @@ public class ProductCustomAdapter extends RecyclerView.Adapter<ProductCustomAdap
 
 
     /* ViewHolder for RecyclerView */
-    public class ViewHolderProducts extends RecyclerView.ViewHolder implements View.OnClickListener{
+     class ViewHolderProducts extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         private TextView textView_item;
         private TextView textView_location;
         private Context mContextViewHolder;
 
-        public ViewHolderProducts(Context context, View itemView) {
+         ViewHolderProducts(Context context, View itemView) {
             super(itemView);
             textView_item = (TextView)itemView.findViewById(R.id.nameTxt);
             textView_location = (TextView)itemView.findViewById(R.id.locationTxt);
@@ -92,10 +97,10 @@ public class ProductCustomAdapter extends RecyclerView.Adapter<ProductCustomAdap
             itemView.setOnClickListener(this);
         }
 
-        public TextView getItem() {
+         TextView getItem() {
             return textView_item;
         }
-        public TextView getLocation() {
+         TextView getLocation() {
             return textView_location;
         }
 
@@ -103,19 +108,43 @@ public class ProductCustomAdapter extends RecyclerView.Adapter<ProductCustomAdap
         @Override
         public void onClick(View view) {
 
-           /* User user = mUsers.get(getLayoutPosition());
+            Product product = products.get(getLayoutPosition());
 
-            String chatRef = user.createUniqueChatRef(mCurrentUserCreatedAt,mCurrentUserEmail);
+            final Dialog dialog = new Dialog(context);
 
-            Intent chatIntent = new Intent(mContextViewHolder, ChatActivity.class);
-            chatIntent.putExtra(ExtraIntent.EXTRA_CURRENT_USER_ID, mCurrentUserId);
-            chatIntent.putExtra(ExtraIntent.EXTRA_RECIPIENT_ID, user.getRecipientId());
-            chatIntent.putExtra(ExtraIntent.EXTRA_CHAT_REF, chatRef);
+            //setting custom layout to dialog
+            dialog.setContentView(R.layout.product_details_view_dialog);
+            dialog.setTitle(Constant.ITEMDETAILS);
+            dialog.setCanceledOnTouchOutside(false);
 
-            // Start new activity
-            mContextViewHolder.startActivity(chatIntent);*/
+            final EditText edittext_item,edittext_quantity,edittext_price,editText_seller,editText_unit,editText_date;
 
+            edittext_item = (EditText)dialog.findViewById(R.id.item);
+            edittext_quantity = (EditText)dialog.findViewById(R.id.qty);
+            edittext_price = (EditText)dialog.findViewById(R.id.price);
+            editText_seller = (EditText)dialog.findViewById(R.id.seller);
+            editText_unit = (EditText)dialog.findViewById(R.id.unit);
+            editText_date = (EditText)dialog.findViewById(R.id.date);
+
+            edittext_item.setText(product.getItem());
+            edittext_quantity.setText(product.getQuantity());
+            edittext_price.setText(product.getPrice());
+            editText_seller.setText(product.getSeller());
+            editText_unit.setText(product.getUnit());
+            editText_date.setText(product.getDate());
+
+            //adding button click event
+            Button dismissButton = (Button) dialog.findViewById(R.id.btn_ok);
+            dismissButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.dismiss();
+                }
+            });
+            dialog.show();
         }
+
     }
+
 
 }

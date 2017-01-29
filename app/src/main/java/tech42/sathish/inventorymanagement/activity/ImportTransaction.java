@@ -150,13 +150,6 @@ public class ImportTransaction extends AppCompatActivity {
         mUsersKeyList.clear();
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
 
     private void showProgressBarForUsers(){
         mProgressBarForProducts.setVisibility(View.VISIBLE);

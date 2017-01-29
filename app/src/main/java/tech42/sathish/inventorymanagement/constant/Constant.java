@@ -17,6 +17,9 @@ public class Constant {
     public static final String PRODUCT = "Product";
     public static final String IMPORT_TRANSACTIONS = "Import Transaction";
     public static final String EXPORT_TRANSACTIONS = "Export Transaction";
-    public static final String DATEFORMAT = "yyyy-MM-dd";
+    public static final String DATEFORMAT = "dd-MM-yyyy hh:mm";
     public static final String[] quantity_Unit_Array = {"Number","Kg","Gram","Litre","Ml"};
+    public static final String ITEMDETAILS = "Item Details";
+    public static final String ITEMSEARCH = "Item Search";
+
 }

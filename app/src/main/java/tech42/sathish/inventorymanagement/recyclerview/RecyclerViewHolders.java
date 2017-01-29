@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import tech42.sathish.inventorymanagement.R;
 import tech42.sathish.inventorymanagement.activity.ExportActivity;
+import tech42.sathish.inventorymanagement.activity.ExportTransactions;
 import tech42.sathish.inventorymanagement.activity.ImportActivity;
 import tech42.sathish.inventorymanagement.activity.ImportTransaction;
 import tech42.sathish.inventorymanagement.activity.ProductsActivity;
@@ -50,7 +51,7 @@ class RecyclerViewHolders extends RecyclerView.ViewHolder implements View.OnClic
             gotoNextActivity = new Intent(context, ImportTransaction.class);
 
         else if ( getPosition() == 4)
-            gotoNextActivity = new Intent(context, ExportActivity.class);
+            gotoNextActivity = new Intent(context, ExportTransactions.class);
 
         else if ( getPosition() == 5)
             gotoNextActivity = new Intent(context, ReportsActivity.class);
