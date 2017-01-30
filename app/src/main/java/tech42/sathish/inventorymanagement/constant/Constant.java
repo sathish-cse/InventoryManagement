@@ -21,5 +21,8 @@ public class Constant {
     public static final String[] quantity_Unit_Array = {"Number","Kg","Gram","Litre","Ml"};
     public static final String ITEMDETAILS = "Item Details";
     public static final String ITEMSEARCH = "Item Search";
+    public static final String IMPORTQTY = "Import Qty";
+    public static final String EXPORTQTY = "Export Qty";
+
 
 }
