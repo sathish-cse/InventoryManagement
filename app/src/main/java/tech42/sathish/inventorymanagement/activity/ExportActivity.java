@@ -172,7 +172,7 @@ public class ExportActivity extends AppCompatActivity implements View.OnClickLis
 
     private void getItemDetails()
     {
-            DatabaseReference getChildListener = databaseReference.child(Constant.PRODUCT).child(string_item.toUpperCase());
+            DatabaseReference getChildListener = databaseReference.child(HomeActivity.USERMAIL).child(Constant.PRODUCT).child(string_item.toUpperCase());
             getChildListener.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
@@ -205,7 +205,7 @@ public class ExportActivity extends AppCompatActivity implements View.OnClickLis
     private void getItemCount()
     {
         try {
-            DatabaseReference getChildListener = databaseReference.child(Constant.EXPORT_TRANSACTIONS);
+            DatabaseReference getChildListener = databaseReference.child(HomeActivity.USERMAIL).child(Constant.EXPORT_TRANSACTIONS);
             getChildListener.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {

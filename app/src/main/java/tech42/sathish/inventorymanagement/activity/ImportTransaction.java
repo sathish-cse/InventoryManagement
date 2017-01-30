@@ -73,7 +73,7 @@ public class ImportTransaction extends AppCompatActivity {
     }
 
     private void setUsersDatabase() {
-        mProductDatabaseReference = FirebaseDatabase.getInstance().getReference().child(Constant.IMPORT_TRANSACTIONS);
+        mProductDatabaseReference = FirebaseDatabase.getInstance().getReference().child(HomeActivity.USERMAIL).child(Constant.IMPORT_TRANSACTIONS);
     }
 
     private void setUserRecyclerView() {

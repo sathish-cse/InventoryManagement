@@ -15,6 +15,7 @@ import com.google.firebase.database.DatabaseReference;
 
 import java.util.ArrayList;
 
+import tech42.sathish.inventorymanagement.activity.HomeActivity;
 import tech42.sathish.inventorymanagement.constant.Constant;
 import tech42.sathish.inventorymanagement.model.Product;
 
@@ -41,7 +42,7 @@ public class ProductHelper {
         {
             try
             {
-                db.child(Constant.PRODUCT).child(product.getItem()).setValue(product);
+                db.child(HomeActivity.USERMAIL).child(Constant.PRODUCT).child(product.getItem()).setValue(product);
                 saved=true;
             }catch (DatabaseException e)
             {
@@ -62,7 +63,7 @@ public class ProductHelper {
         {
             try
             {
-                db.child(Constant.IMPORT_TRANSACTIONS).child(count.toString()).setValue(product);
+                db.child(HomeActivity.USERMAIL).child(Constant.IMPORT_TRANSACTIONS).child(count.toString()).setValue(product);
                 saved=true;
             }catch (DatabaseException e)
             {
@@ -83,7 +84,7 @@ public class ProductHelper {
         {
             try
             {
-                db.child(Constant.EXPORT_TRANSACTIONS).child(count.toString()).setValue(product);
+                db.child(HomeActivity.USERMAIL).child(Constant.EXPORT_TRANSACTIONS).child(count.toString()).setValue(product);
                 saved=true;
             }catch (DatabaseException e)
             {
@@ -99,7 +100,7 @@ public class ProductHelper {
     {
             try
             {
-                db.child(Constant.PRODUCT).child(product.getItem()).setValue(product);
+                db.child(HomeActivity.USERMAIL).child(Constant.PRODUCT).child(product.getItem()).setValue(product);
                 updated=true;
             }catch (DatabaseException e)
             {

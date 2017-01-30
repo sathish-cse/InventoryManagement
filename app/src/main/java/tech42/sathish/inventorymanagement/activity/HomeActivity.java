@@ -12,8 +12,10 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -35,6 +37,7 @@ public class HomeActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private FirebaseAuth firebaseAuth;
     private DatabaseReference databaseReference;
+    public static String USERMAIL;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,9 +45,9 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         findToolbarView();
-        findNavigationDrawer();
         findRecyclerViews();
         getInstance();
+        findNavigationDrawer();
     }
 
     private void getInstance()
@@ -55,6 +58,8 @@ public class HomeActivity extends AppCompatActivity {
         // Get Instance
         databaseReference = FirebaseDatabase.getInstance().getReference();
 
+        // GET USER MAIL ID
+        USERMAIL = firebaseAuth.getCurrentUser().getEmail().replace(".","_");
     }
 
     private void findToolbarView()
@@ -84,6 +89,10 @@ public class HomeActivity extends AppCompatActivity {
                 return true;
             }
         });
+
+        View navigationHeaderView = navigationView.getHeaderView(0);
+        TextView txt_Email = (TextView) navigationHeaderView.findViewById(R.id.id);
+        txt_Email.setText(firebaseAuth.getCurrentUser().getEmail());
 
         drawerLayout = (DrawerLayout)findViewById(R.id.drawer);
 

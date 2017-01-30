@@ -76,7 +76,7 @@ public class ProductsActivity extends AppCompatActivity {
     }
 
     private void setUsersDatabase() {
-        mProductDatabaseReference = FirebaseDatabase.getInstance().getReference().child(Constant.PRODUCT);
+        mProductDatabaseReference = FirebaseDatabase.getInstance().getReference().child(HomeActivity.USERMAIL).child(Constant.PRODUCT);
     }
 
     private void setUserRecyclerView() {
