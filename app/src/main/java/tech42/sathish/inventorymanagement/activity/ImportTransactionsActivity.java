@@ -7,8 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 
@@ -25,11 +23,11 @@ import java.util.List;
 
 import tech42.sathish.inventorymanagement.R;
 import tech42.sathish.inventorymanagement.constant.Constant;
-import tech42.sathish.inventorymanagement.customadapter.ExportTransactionCustomAdapter;
+import tech42.sathish.inventorymanagement.customadapter.ImportTransactionCustomAdapter;
 import tech42.sathish.inventorymanagement.model.Product;
 
 
-public class ExportTransactions extends AppCompatActivity {
+public class ImportTransactionsActivity extends AppCompatActivity {
 
     private ProgressBar mProgressBarForProducts;
     private RecyclerView mProductRecyclerView;
@@ -41,12 +39,12 @@ public class ExportTransactions extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener mAuthListener;
     private DatabaseReference mProductDatabaseReference;
     private ChildEventListener mChildEventListener;
-    private ExportTransactionCustomAdapter ExportTransactionCustomAdapter;
+    private ImportTransactionCustomAdapter ImportTransactionCustomAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_export_transactions);
+        setContentView(R.layout.activity_import_transaction);
 
         mProgressBarForProducts = (ProgressBar)findViewById(R.id.progress_bar_users);
         mProductRecyclerView = (RecyclerView)findViewById(R.id.recycler_view_users);
@@ -73,14 +71,14 @@ public class ExportTransactions extends AppCompatActivity {
     }
 
     private void setUsersDatabase() {
-        mProductDatabaseReference = FirebaseDatabase.getInstance().getReference().child(HomeActivity.USERMAIL).child(Constant.EXPORT_TRANSACTIONS);
+        mProductDatabaseReference = FirebaseDatabase.getInstance().getReference().child(HomeActivity.USERMAIL).child(Constant.IMPORT_TRANSACTIONS);
     }
 
     private void setUserRecyclerView() {
-        ExportTransactionCustomAdapter = new ExportTransactionCustomAdapter(this, new ArrayList<Product>());
+        ImportTransactionCustomAdapter = new ImportTransactionCustomAdapter(this, new ArrayList<Product>());
         mProductRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mProductRecyclerView.setHasFixedSize(true);
-        mProductRecyclerView.setAdapter(ExportTransactionCustomAdapter);
+        mProductRecyclerView.setAdapter(ImportTransactionCustomAdapter);
     }
 
     private void setUsersKeyList() {
@@ -146,7 +144,7 @@ public class ExportTransactions extends AppCompatActivity {
     }
 
     private void clearCurrentUsers() {
-        ExportTransactionCustomAdapter.clear();
+        ImportTransactionCustomAdapter.clear();
         mUsersKeyList.clear();
     }
 
@@ -177,7 +175,7 @@ public class ExportTransactions extends AppCompatActivity {
                         Product recipient = dataSnapshot.getValue(Product.class);
                         recipient.setProductid(userUid);
                         mUsersKeyList.add(userUid);
-                        ExportTransactionCustomAdapter.refill(recipient);
+                        ImportTransactionCustomAdapter.refill(recipient);
                     }
                 }
 
@@ -193,7 +191,7 @@ public class ExportTransactions extends AppCompatActivity {
 
                         int index = mUsersKeyList.indexOf(userUid);
                         if(index > -1) {
-                            ExportTransactionCustomAdapter.changeUser(index, user);
+                            ImportTransactionCustomAdapter.changeUser(index, user);
                         }
                     }
 

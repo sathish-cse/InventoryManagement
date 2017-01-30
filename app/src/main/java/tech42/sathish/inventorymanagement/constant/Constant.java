@@ -12,7 +12,7 @@ public class Constant {
     public static final String TRANSACTION = "Transaction";
     public static final String LOCAITONS = "Locations";
     public static final String PRODUCTS = "Products";
-    public static final String REPORT = "Report";
+    public static final String DASHBOARD = "Dashboard";
     public static final String CONNECTION = "connetion";
     public static final String PRODUCT = "Product";
     public static final String IMPORT_TRANSACTIONS = "Import Transaction";

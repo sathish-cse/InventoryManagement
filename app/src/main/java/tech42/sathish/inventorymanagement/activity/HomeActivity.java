@@ -9,25 +9,20 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import tech42.sathish.inventorymanagement.R;
 import tech42.sathish.inventorymanagement.constant.Constant;
-import tech42.sathish.inventorymanagement.item.ItemObject;
+import tech42.sathish.inventorymanagement.item.HomeItemObject;
 import tech42.sathish.inventorymanagement.recyclerview.RecyclerViewAdapter;
 
 public class HomeActivity extends AppCompatActivity {
@@ -44,13 +39,13 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        findToolbarView();
-        findRecyclerViews();
-        getInstance();
-        findNavigationDrawer();
+        initializeToolbarView();
+        initializeRecyclerViews();
+        initializeInstance();
+        initializeNavigationDrawer();
     }
 
-    private void getInstance()
+    private void initializeInstance()
     {
         // Get Instance for firebase authentication
         firebaseAuth = FirebaseAuth.getInstance();
@@ -62,14 +57,14 @@ public class HomeActivity extends AppCompatActivity {
         USERMAIL = firebaseAuth.getCurrentUser().getEmail().replace(".","_");
     }
 
-    private void findToolbarView()
+    private void initializeToolbarView()
     {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitle(Constant.TITLE);
     }
 
-    public void findNavigationDrawer() {
+    public void initializeNavigationDrawer() {
 
         NavigationView navigationView = (NavigationView)findViewById(R.id.navigation_view);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -112,9 +107,9 @@ public class HomeActivity extends AppCompatActivity {
         actionBarDrawerToggle.syncState();
     }
 
-    private void findRecyclerViews()
+    private void initializeRecyclerViews()
     {
-        List<ItemObject> rowListItem = getAllItemList();
+        List<HomeItemObject> rowListItem = getAllItem();
         gridLayoutManager = new GridLayoutManager(HomeActivity.this, 2);
 
         RecyclerView rView = (RecyclerView)findViewById(R.id.recycler_view);
@@ -125,15 +120,15 @@ public class HomeActivity extends AppCompatActivity {
         rView.setAdapter(rcAdapter);
     }
 
-    private List<ItemObject> getAllItemList(){
+    private List<HomeItemObject> getAllItem(){
 
-        List<ItemObject> allItems = new ArrayList<ItemObject>();
-        allItems.add(new ItemObject(Constant.IMPORT, R.drawable.in));
-        allItems.add(new ItemObject(Constant.EXPORT, R.drawable.out));
-        allItems.add(new ItemObject(Constant.PRODUCTS, R.drawable.products));
-        allItems.add(new ItemObject(Constant.IMPORT_TRANSACTIONS, R.drawable.move));
-        allItems.add(new ItemObject(Constant.EXPORT_TRANSACTIONS, R.drawable.move));
-        allItems.add(new ItemObject(Constant.REPORT, R.drawable.report));
+        List<HomeItemObject> allItems = new ArrayList<HomeItemObject>();
+        allItems.add(new HomeItemObject(Constant.IMPORT, R.drawable.in));
+        allItems.add(new HomeItemObject(Constant.EXPORT, R.drawable.out));
+        allItems.add(new HomeItemObject(Constant.PRODUCTS, R.drawable.products));
+        allItems.add(new HomeItemObject(Constant.IMPORT_TRANSACTIONS, R.drawable.move));
+        allItems.add(new HomeItemObject(Constant.EXPORT_TRANSACTIONS, R.drawable.move));
+        allItems.add(new HomeItemObject(Constant.DASHBOARD, R.drawable.report));
         return allItems;
     }
 

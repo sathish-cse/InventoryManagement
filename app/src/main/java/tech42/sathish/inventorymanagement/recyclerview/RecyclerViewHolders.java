@@ -11,13 +11,13 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import tech42.sathish.inventorymanagement.activity.DashboardActivity;
 import tech42.sathish.inventorymanagement.R;
 import tech42.sathish.inventorymanagement.activity.ExportActivity;
-import tech42.sathish.inventorymanagement.activity.ExportTransactions;
+import tech42.sathish.inventorymanagement.activity.ExportTransactionsActivity;
 import tech42.sathish.inventorymanagement.activity.ImportActivity;
-import tech42.sathish.inventorymanagement.activity.ImportTransaction;
+import tech42.sathish.inventorymanagement.activity.ImportTransactionsActivity;
 import tech42.sathish.inventorymanagement.activity.ProductsActivity;
-import tech42.sathish.inventorymanagement.activity.ReportsActivity;
 
 class RecyclerViewHolders extends RecyclerView.ViewHolder implements View.OnClickListener{
 
@@ -48,13 +48,13 @@ class RecyclerViewHolders extends RecyclerView.ViewHolder implements View.OnClic
             gotoNextActivity = new Intent(context, ProductsActivity.class);
 
         else if ( getPosition() == 3)
-            gotoNextActivity = new Intent(context, ImportTransaction.class);
+            gotoNextActivity = new Intent(context, ImportTransactionsActivity.class);
 
         else if ( getPosition() == 4)
-            gotoNextActivity = new Intent(context, ExportTransactions.class);
+            gotoNextActivity = new Intent(context, ExportTransactionsActivity.class);
 
         else if ( getPosition() == 5)
-            gotoNextActivity = new Intent(context, ReportsActivity.class);
+            gotoNextActivity = new Intent(context, DashboardActivity.class);
 
         context.startActivity(gotoNextActivity);
     }

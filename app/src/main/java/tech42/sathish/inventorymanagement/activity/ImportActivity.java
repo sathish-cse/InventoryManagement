@@ -22,7 +22,7 @@ import java.util.Calendar;
 
 import tech42.sathish.inventorymanagement.R;
 import tech42.sathish.inventorymanagement.constant.Constant;
-import tech42.sathish.inventorymanagement.helper.ProductHelper;
+import tech42.sathish.inventorymanagement.firebasehelper.ProductStorageHelper;
 import tech42.sathish.inventorymanagement.model.Product;
 
 /*
@@ -34,7 +34,7 @@ import tech42.sathish.inventorymanagement.model.Product;
 public class ImportActivity extends AppCompatActivity implements View.OnClickListener{
 
     DatabaseReference databaseReference;
-    ProductHelper firebaseHelper;
+    ProductStorageHelper firebaseHelper;
     private EditText edittext_item,edittext_quantity,edittext_price,editText_seller;
     private Button button_import;
     private MaterialBetterSpinner unit_materialDesignSpinner;
@@ -55,7 +55,7 @@ public class ImportActivity extends AppCompatActivity implements View.OnClickLis
     private void initializeFirebaseDatabase()
     {
         databaseReference = FirebaseDatabase.getInstance().getReference();
-        firebaseHelper = new ProductHelper(databaseReference);
+        firebaseHelper = new ProductStorageHelper(databaseReference);
     }
 
     private void findViews()

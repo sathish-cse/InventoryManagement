@@ -5,14 +5,12 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -25,7 +23,7 @@ import java.util.Calendar;
 
 import tech42.sathish.inventorymanagement.R;
 import tech42.sathish.inventorymanagement.constant.Constant;
-import tech42.sathish.inventorymanagement.helper.ProductHelper;
+import tech42.sathish.inventorymanagement.firebasehelper.ProductStorageHelper;
 import tech42.sathish.inventorymanagement.model.Product;
 
 import static tech42.sathish.inventorymanagement.constant.Constant.quantity_Unit_Array;
@@ -39,7 +37,7 @@ import static tech42.sathish.inventorymanagement.constant.Constant.quantity_Unit
 public class ExportActivity extends AppCompatActivity implements View.OnClickListener{
 
     DatabaseReference databaseReference;
-    ProductHelper firebaseHelper;
+    ProductStorageHelper firebaseHelper;
     private EditText edittext_item, edittext_quantity, edittext_price, editText_buyer;
     private Button button_export;
     private MaterialBetterSpinner unit_materialDesignSpinner;
@@ -61,7 +59,7 @@ public class ExportActivity extends AppCompatActivity implements View.OnClickLis
     private void initializeFirebaseDatabase()
     {
         databaseReference = FirebaseDatabase.getInstance().getReference();
-        firebaseHelper = new ProductHelper(databaseReference);
+        firebaseHelper = new ProductStorageHelper(databaseReference);
     }
 
     private void findViews()

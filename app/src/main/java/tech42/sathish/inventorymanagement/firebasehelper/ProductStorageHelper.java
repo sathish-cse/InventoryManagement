@@ -1,4 +1,4 @@
-package tech42.sathish.inventorymanagement.helper;
+package tech42.sathish.inventorymanagement.firebasehelper;
 
 /**
  * Created by lenovo on 27/1/17.
@@ -19,7 +19,7 @@ import tech42.sathish.inventorymanagement.activity.HomeActivity;
 import tech42.sathish.inventorymanagement.constant.Constant;
 import tech42.sathish.inventorymanagement.model.Product;
 
-public class ProductHelper {
+public class ProductStorageHelper {
 
     private DatabaseReference db;
     private Boolean saved,updated;
@@ -28,7 +28,7 @@ public class ProductHelper {
     /*
        PASS DATABASE REFRENCE
   */
-    public ProductHelper(DatabaseReference db) {
+    public ProductStorageHelper(DatabaseReference db) {
         this.db = db;
     }
 

@@ -13,14 +13,14 @@ import android.view.ViewGroup;
 import java.util.List;
 
 import tech42.sathish.inventorymanagement.R;
-import tech42.sathish.inventorymanagement.item.ItemObject;
+import tech42.sathish.inventorymanagement.item.HomeItemObject;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewHolders> {
 
-    private List<ItemObject> itemList;
+    private List<HomeItemObject> itemList;
     private Context context;
 
-    public RecyclerViewAdapter(Context context, List<ItemObject> itemList) {
+    public RecyclerViewAdapter(Context context, List<HomeItemObject> itemList) {
         this.itemList = itemList;
         this.context = context;
     }

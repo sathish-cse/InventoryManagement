@@ -22,13 +22,13 @@ import tech42.sathish.inventorymanagement.model.Product;
  * 2. THEN BIND DATA
  */
 
-public class TransactionCustomAdapter extends RecyclerView.Adapter<TransactionCustomAdapter.ViewHolderProducts> {
+public class ImportTransactionCustomAdapter extends RecyclerView.Adapter<ImportTransactionCustomAdapter.ViewHolderProducts> {
 
 
     private Context context;
     private List<Product> products;
 
-    public TransactionCustomAdapter(Context context, List<Product> products) {
+    public ImportTransactionCustomAdapter(Context context, List<Product> products) {
         this.context = context;
         this.products = products;
     }

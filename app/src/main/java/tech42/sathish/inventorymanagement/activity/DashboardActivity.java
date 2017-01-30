@@ -5,11 +5,11 @@ import android.os.Bundle;
 
 import tech42.sathish.inventorymanagement.R;
 
-public class ReportsActivity extends AppCompatActivity {
+public class DashboardActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_reports);
+        setContentView(R.layout.activity_dashboard);
     }
 }

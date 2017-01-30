@@ -4,12 +4,12 @@ package tech42.sathish.inventorymanagement.item;
  * Created by lenovo on 25/1/17.
  */
 
-public class ItemObject {
+public class HomeItemObject {
 
     private String name;
     private int photo;
 
-    public ItemObject(String name, int photo) {
+    public HomeItemObject(String name, int photo) {
         this.name = name;
         this.photo = photo;
     }

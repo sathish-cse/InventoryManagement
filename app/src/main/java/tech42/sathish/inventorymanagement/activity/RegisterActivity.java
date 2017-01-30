@@ -27,7 +27,6 @@ import tech42.sathish.inventorymanagement.model.User;
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
 
     private EditText editText_email;
-    private EditText editText_username;
     private EditText editText_password;
     private Button button_register;
     private AlertDialog alertDialog;
@@ -44,7 +43,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     private void findViews() {
         editText_email = (EditText) findViewById(R.id.email);
-        editText_username = (EditText) findViewById(R.id.name);
         editText_password = (EditText) findViewById(R.id.password);
         button_register = (Button) findViewById(R.id.register);
 
