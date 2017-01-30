@@ -1,4 +1,4 @@
-package tech42.sathish.inventorymanagement.recyclerview;
+package tech42.sathish.inventorymanagement.recyclerviewhome;
 
 /**
  * Created by lenovo on 25/1/17.

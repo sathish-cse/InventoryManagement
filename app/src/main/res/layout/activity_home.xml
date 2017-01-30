@@ -51,7 +51,7 @@
     android:layout_height="match_parent"
     android:layout_width="wrap_content"
     android:layout_gravity="start"
-    app:headerLayout="@layout/nav_header"
-    app:menu="@menu/menu_navigation"/>
+    app:headerLayout="@layout/home_navigation_header"
+    app:menu="@menu/menu_home_navigation"/>
 
 </android.support.v4.widget.DrawerLayout>

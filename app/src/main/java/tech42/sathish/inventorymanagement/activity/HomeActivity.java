@@ -23,7 +23,8 @@ import java.util.List;
 import tech42.sathish.inventorymanagement.R;
 import tech42.sathish.inventorymanagement.constant.Constant;
 import tech42.sathish.inventorymanagement.item.HomeItemObject;
-import tech42.sathish.inventorymanagement.recyclerview.RecyclerViewAdapter;
+import tech42.sathish.inventorymanagement.recyclerviewhome.RecyclerViewAdapter;
+import tech42.sathish.inventorymanagement.recyclerviewhome.RecyclerViewList;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -109,7 +110,7 @@ public class HomeActivity extends AppCompatActivity {
 
     private void initializeRecyclerViews()
     {
-        List<HomeItemObject> rowListItem = getAllItem();
+        List<HomeItemObject> rowListItem = RecyclerViewList.getAllItem();
         gridLayoutManager = new GridLayoutManager(HomeActivity.this, 2);
 
         RecyclerView rView = (RecyclerView)findViewById(R.id.recycler_view);
@@ -120,17 +121,7 @@ public class HomeActivity extends AppCompatActivity {
         rView.setAdapter(rcAdapter);
     }
 
-    private List<HomeItemObject> getAllItem(){
 
-        List<HomeItemObject> allItems = new ArrayList<HomeItemObject>();
-        allItems.add(new HomeItemObject(Constant.IMPORT, R.drawable.in));
-        allItems.add(new HomeItemObject(Constant.EXPORT, R.drawable.out));
-        allItems.add(new HomeItemObject(Constant.PRODUCTS, R.drawable.products));
-        allItems.add(new HomeItemObject(Constant.IMPORT_TRANSACTIONS, R.drawable.move));
-        allItems.add(new HomeItemObject(Constant.EXPORT_TRANSACTIONS, R.drawable.move));
-        allItems.add(new HomeItemObject(Constant.DASHBOARD, R.drawable.report));
-        return allItems;
-    }
 
     private void logout() {
         setUserOffline();
