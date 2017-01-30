@@ -55,37 +55,37 @@ public class ImportTransactionsActivity extends AppCompatActivity {
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
 
-        setAuthInstance();
-        setUsersDatabase();
-        setUserRecyclerView();
-        setUsersKeyList();
-        setAuthListener();
+        initializeAuthInstance();
+        initializeUsersDatabase();
+        initializeUserRecyclerView();
+        initializeUsersKeyList();
+        initializeAuthListener();
 
         progressDialog.dismiss();
     }
 
 
 
-    private void setAuthInstance() {
+    private void initializeAuthInstance() {
         mAuth = FirebaseAuth.getInstance();
     }
 
-    private void setUsersDatabase() {
+    private void initializeUsersDatabase() {
         mProductDatabaseReference = FirebaseDatabase.getInstance().getReference().child(HomeActivity.USERMAIL).child(Constant.IMPORT_TRANSACTIONS);
     }
 
-    private void setUserRecyclerView() {
+    private void initializeUserRecyclerView() {
         ImportTransactionCustomAdapter = new ImportTransactionCustomAdapter(this, new ArrayList<Product>());
         mProductRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mProductRecyclerView.setHasFixedSize(true);
         mProductRecyclerView.setAdapter(ImportTransactionCustomAdapter);
     }
 
-    private void setUsersKeyList() {
+    private void initializeUsersKeyList() {
         mUsersKeyList = new ArrayList<String>();
     }
 
-    private void setAuthListener() {
+    private void initializeAuthListener() {
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {

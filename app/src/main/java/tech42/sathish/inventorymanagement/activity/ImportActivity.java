@@ -134,10 +134,7 @@ public class ImportActivity extends AppCompatActivity implements View.OnClickLis
 
     private boolean editTextValidation()
     {
-        if ( string_item.isEmpty() || string_quantity.isEmpty() || string_price.isEmpty() || string_seller.isEmpty() || string_unit.isEmpty())
-            return false;
-        else
-            return true;
+        return !(string_item.isEmpty() || string_quantity.isEmpty() || string_price.isEmpty() || string_seller.isEmpty() || string_unit.isEmpty());
     }
 
     private void clearEditText()

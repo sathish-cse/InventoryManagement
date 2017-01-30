@@ -60,37 +60,37 @@ public class ProductsActivity extends AppCompatActivity {
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.show();
 
-        setAuthInstance();
-        setUsersDatabase();
-        setUserRecyclerView();
-        setUsersKeyList();
-        setAuthListener();
+        initializeAuthInstance();
+        initializeUsersDatabase();
+        initializeUserRecyclerView();
+        initializeUsersKeyList();
+        initializesetAuthListener();
 
         progressDialog.dismiss();
     }
 
 
 
-    private void setAuthInstance() {
+    private void initializeAuthInstance() {
         mAuth = FirebaseAuth.getInstance();
     }
 
-    private void setUsersDatabase() {
+    private void initializeUsersDatabase() {
         mProductDatabaseReference = FirebaseDatabase.getInstance().getReference().child(HomeActivity.USERMAIL).child(Constant.PRODUCT);
     }
 
-    private void setUserRecyclerView() {
+    private void initializeUserRecyclerView() {
         ProductCustomAdapter = new ProductCustomAdapter(this, new ArrayList<Product>());
         mProductRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mProductRecyclerView.setHasFixedSize(true);
         mProductRecyclerView.setAdapter(ProductCustomAdapter);
     }
 
-    private void setUsersKeyList() {
+    private void initializeUsersKeyList() {
         mUsersKeyList = new ArrayList<String>();
     }
 
-    private void setAuthListener() {
+    private void initializesetAuthListener() {
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {

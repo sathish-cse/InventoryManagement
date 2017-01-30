@@ -23,6 +23,8 @@ public class Constant {
     public static final String ITEMSEARCH = "Item Search";
     public static final String IMPORTQTY = "Import Qty";
     public static final String EXPORTQTY = "Export Qty";
+    public static final String IMPORTPRICE = "Import Price";
+    public static final String EXPORTPRICE = "Export Price";
 
 
 }
