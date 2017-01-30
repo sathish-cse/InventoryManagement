@@ -2,27 +2,17 @@ package tech42.sathish.inventorymanagement.customadapter;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import tech42.sathish.inventorymanagement.R;
-import tech42.sathish.inventorymanagement.activity.ProductsActivity;
 import tech42.sathish.inventorymanagement.constant.Constant;
 import tech42.sathish.inventorymanagement.model.Product;
 
@@ -45,7 +35,7 @@ public class ProductCustomAdapter extends RecyclerView.Adapter<ProductCustomAdap
 
     @Override
     public ViewHolderProducts onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new ViewHolderProducts(context, LayoutInflater.from(parent.getContext()).inflate(R.layout.products_card_view, parent, false));
+        return new ViewHolderProducts(context, LayoutInflater.from(parent.getContext()).inflate(R.layout.card_view_products, parent, false));
     }
 
 
@@ -113,7 +103,7 @@ public class ProductCustomAdapter extends RecyclerView.Adapter<ProductCustomAdap
             final Dialog dialog = new Dialog(context);
 
             //setting custom layout to dialog
-            dialog.setContentView(R.layout.product_details_view_dialog);
+            dialog.setContentView(R.layout.layout_product_details_view);
             dialog.setTitle(Constant.ITEMDETAILS);
             dialog.setCanceledOnTouchOutside(false);
 

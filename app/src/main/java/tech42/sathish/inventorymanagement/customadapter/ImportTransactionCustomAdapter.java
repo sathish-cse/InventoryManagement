@@ -35,7 +35,7 @@ public class ImportTransactionCustomAdapter extends RecyclerView.Adapter<ImportT
 
     @Override
     public ViewHolderProducts onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new ViewHolderProducts(context, LayoutInflater.from(parent.getContext()).inflate(R.layout.import_transaction_card_view, parent, false));
+        return new ViewHolderProducts(context, LayoutInflater.from(parent.getContext()).inflate(R.layout.card_view_import_transaction, parent, false));
     }
 
 
@@ -116,7 +116,7 @@ public class ImportTransactionCustomAdapter extends RecyclerView.Adapter<ImportT
             final Dialog dialog = new Dialog(context);
 
             //setting custom layout to dialog
-            dialog.setContentView(R.layout.product_details_view_dialog);
+            dialog.setContentView(R.layout.layout_product_details_view);
             dialog.setTitle(Constant.IMPORT_TRANSACTIONS);
             dialog.setCanceledOnTouchOutside(false);
 

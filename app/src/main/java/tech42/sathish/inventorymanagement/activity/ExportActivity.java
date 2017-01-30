@@ -245,7 +245,7 @@ public class ExportActivity extends AppCompatActivity implements View.OnClickLis
         final Dialog dialog = new Dialog(ExportActivity.this);
 
         //setting custom layout to dialog
-        dialog.setContentView(R.layout.export_item_search_layout);
+        dialog.setContentView(R.layout.layout_export_item_search);
         dialog.setTitle(Constant.ITEMSEARCH);
         dialog.setCanceledOnTouchOutside(false);
 
