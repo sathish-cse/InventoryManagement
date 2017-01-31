@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/colortext">
 
-            <tech42.sathish.inventorymanagement.customfonts.CustomFontsEditText
+            <tech42.sathish.inventorymanagement.customfonts.CustomFontsAutoCompleteTextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/item"

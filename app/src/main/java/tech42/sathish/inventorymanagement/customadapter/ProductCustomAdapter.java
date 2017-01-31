@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import tech42.sathish.inventorymanagement.R;
@@ -49,6 +50,7 @@ public class ProductCustomAdapter extends RecyclerView.Adapter<ProductCustomAdap
 
         // Set location
         holder.getLocation().setText(product.getQuantity() + " " + product.getUnit());
+
     }
 
     @Override

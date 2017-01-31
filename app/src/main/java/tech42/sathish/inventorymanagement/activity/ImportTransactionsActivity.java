@@ -49,22 +49,12 @@ public class ImportTransactionsActivity extends AppCompatActivity {
         mProgressBarForProducts = (ProgressBar)findViewById(R.id.progress_bar_users);
         mProductRecyclerView = (RecyclerView)findViewById(R.id.recycler_view_users);
 
-
-        ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Fetching Transaction Details..");
-        progressDialog.setCanceledOnTouchOutside(false);
-        progressDialog.show();
-
         initializeAuthInstance();
         initializeUsersDatabase();
         initializeUserRecyclerView();
         initializeUsersKeyList();
         initializeAuthListener();
-
-        progressDialog.dismiss();
     }
-
-
 
     private void initializeAuthInstance() {
         mAuth = FirebaseAuth.getInstance();

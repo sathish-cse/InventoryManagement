@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -55,20 +56,13 @@ public class ProductsActivity extends AppCompatActivity {
         mProductRecyclerView = (RecyclerView)findViewById(R.id.recycler_view_users);
 
 
-        ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Fetching Product Details..");
-        progressDialog.setCanceledOnTouchOutside(false);
-        progressDialog.show();
-
         initializeAuthInstance();
         initializeUsersDatabase();
         initializeUserRecyclerView();
         initializeUsersKeyList();
         initializesetAuthListener();
 
-        progressDialog.dismiss();
     }
-
 
 
     private void initializeAuthInstance() {
@@ -166,6 +160,7 @@ public class ProductsActivity extends AppCompatActivity {
 
     private ChildEventListener getChildEventListener() {
         return new ChildEventListener() {
+
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
 
@@ -217,7 +212,10 @@ public class ProductsActivity extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {
 
             }
+
         };
+
+
     }
 
 

@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -19,6 +20,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import tech42.sathish.inventorymanagement.R;
@@ -36,24 +38,25 @@ import static tech42.sathish.inventorymanagement.constant.Constant.quantity_Unit
 
 public class ExportActivity extends AppCompatActivity implements View.OnClickListener{
 
-    DatabaseReference databaseReference;
-    ProductStorageHelper firebaseHelper;
+    private DatabaseReference databaseReference;
+    private ProductStorageHelper firebaseHelper;
     private EditText edittext_item, edittext_quantity, edittext_price, editText_buyer;
     private Button button_export;
     private MaterialBetterSpinner unit_materialDesignSpinner;
     private String string_quantity, string_buyer, string_unit, string_item, string_price, import_price, import_date, import_seller;
     private Integer import_qty, export_qty, export_children_count;
-
+    private ArrayList<String> itemList = new ArrayList<>();
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected final void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_export);
 
-        showSearchDialog();
         initializeFirebaseDatabase();
         findViews();
         getItemCount();
+        showSearchDialog();
+
     }
 
     private void initializeFirebaseDatabase()
@@ -84,21 +87,21 @@ public class ExportActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     @Override
-    public void onClick(View v) {
+    public final void onClick(View v) {
 
         getData();
 
-        if ( v == button_export)
+        if ( v. equals( button_export ) )
         {
             if(editTextValidation()) {
                 if(quantityValidation())
-                    setData();
-                else
-                    Toast.makeText(getApplicationContext(),"Exported quantity "+ string_quantity +" is more than stock quantity : " + import_qty,Toast.LENGTH_SHORT).show();
-
+                {setData();}
+                else {
+                    Toast.makeText(getApplicationContext(), "Exported quantity " + string_quantity + " is more than stock quantity : " + import_qty, Toast.LENGTH_SHORT).show();
+                }
             }
-            else
-                Toast.makeText(getApplicationContext(),"Details must not be empty..",Toast.LENGTH_SHORT).show();
+            else{
+                Toast.makeText(getApplicationContext(),"Details must not be empty..",Toast.LENGTH_SHORT).show();}
         }
     }
 
@@ -123,21 +126,21 @@ public class ExportActivity extends AppCompatActivity implements View.OnClickLis
             product.setDate( import_date );
 
         // Add Export Array
-        Product Product = new Product();
-            Product.setItem( string_item );
-            Product.setPrice( string_price );
-            Product.setQuantity( string_quantity );
-            Product.setBuyer( string_buyer );
-            Product.setUnit( string_unit );
-            Product.setDate( getCurrentDate() );
+        Product arrayProduct = new Product();
+            arrayProduct.setItem( string_item );
+            arrayProduct.setPrice( string_price );
+            arrayProduct.setQuantity( string_quantity );
+            arrayProduct.setBuyer( string_buyer );
+            arrayProduct.setUnit( string_unit );
+            arrayProduct.setDate( getCurrentDate() );
 
-        if(firebaseHelper.update(product) && firebaseHelper.addExportTransaction(export_children_count,Product)) {
+        if(firebaseHelper.update(product) && firebaseHelper.addExportTransaction(export_children_count,arrayProduct)) {
             clearEditText();
             Toast.makeText(getApplicationContext(), "Product Exported successfully..", Toast.LENGTH_SHORT).show();
             refresh();
         }
-        else
-            Toast.makeText(getApplicationContext(),"Product didn't export..",Toast.LENGTH_SHORT).show();
+        else{
+            Toast.makeText(getApplicationContext(),"Product didn't export..",Toast.LENGTH_SHORT).show();}
 
     }
 
@@ -148,12 +151,12 @@ public class ExportActivity extends AppCompatActivity implements View.OnClickLis
 
     private void clearEditText()
     {
-        edittext_quantity.setText("");
-        edittext_item.setText("");
-        editText_buyer.setText("");
-        edittext_price.setText("");
+        edittext_quantity.setText(Constant.EMPTY);
+        edittext_item.setText(Constant.EMPTY);
+        editText_buyer.setText(Constant.EMPTY);
+        edittext_price.setText(Constant.EMPTY);
         unit_materialDesignSpinner.clearFocus();
-        unit_materialDesignSpinner.setText("");
+        unit_materialDesignSpinner.setText(Constant.EMPTY);
     }
 
     private String getCurrentDate()
@@ -171,7 +174,6 @@ public class ExportActivity extends AppCompatActivity implements View.OnClickLis
             getChildListener.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
-
                     if(dataSnapshot.exists())
                     {
                         Product product = dataSnapshot.getValue(Product.class);
@@ -191,9 +193,7 @@ public class ExportActivity extends AppCompatActivity implements View.OnClickLis
                 }
 
                 @Override
-                public void onCancelled(DatabaseError databaseError) {
-
-                }
+                public void onCancelled(DatabaseError databaseError) {}
             });
     }
 
@@ -225,12 +225,12 @@ public class ExportActivity extends AppCompatActivity implements View.OnClickLis
             export_qty = import_qty - (Integer.parseInt(string_quantity));
             return true;
         }
-        else
-            return false;
+        else{
+            return false;}
 
     }
 
-    public void refresh()
+    public final void refresh()
     {
         Intent refresh = getIntent();
         finish();
@@ -246,17 +246,21 @@ public class ExportActivity extends AppCompatActivity implements View.OnClickLis
         dialog.setTitle(Constant.ITEMSEARCH);
         dialog.setCanceledOnTouchOutside(false);
 
-        final EditText edittext_item_search;
+        final AutoCompleteTextView editextSearch;
 
-        edittext_item_search = (EditText)dialog.findViewById(R.id.item);
+        editextSearch = (AutoCompleteTextView) dialog.findViewById(R.id.item);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>
+                (this,android.R.layout.simple_list_item_1,getItemList());
+        editextSearch.setAdapter(adapter);
+        editextSearch.setThreshold(0);
 
         //adding button click event
         Button search = (Button) dialog.findViewById(R.id.btn_search);
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!edittext_item_search.getText().toString().isEmpty()) {
-                        edittext_item.setText(edittext_item_search.getText().toString());
+                if(!editextSearch.getText().toString().isEmpty()) {
+                        edittext_item.setText(editextSearch.getText().toString());
                         getData();
                         getItemDetails();
                         dialog.dismiss();
@@ -270,8 +274,29 @@ public class ExportActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     @Override
-    public void onBackPressed() {
+    public final void onBackPressed() {
         super.onBackPressed();
         finish();
+    }
+
+    private ArrayList<String> getItemList()
+    {
+        DatabaseReference getItemListener = databaseReference.child(HomeActivity.USERMAIL).child(Constant.PRODUCT);
+        getItemListener.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot dsp : dataSnapshot.getChildren()) {
+                    itemList.add(String.valueOf(dsp.getKey())); //add result into array list
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        return itemList;
     }
 }

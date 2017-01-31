@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -18,7 +19,9 @@ import com.google.firebase.database.ValueEventListener;
 import com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Map;
 
 import tech42.sathish.inventorymanagement.R;
 import tech42.sathish.inventorymanagement.constant.Constant;
@@ -33,13 +36,15 @@ import tech42.sathish.inventorymanagement.model.Product;
 
 public class ImportActivity extends AppCompatActivity implements View.OnClickListener{
 
-    DatabaseReference databaseReference;
-    ProductStorageHelper firebaseHelper;
-    private EditText edittext_item,edittext_quantity,edittext_price,editText_seller;
+    private DatabaseReference databaseReference;
+    private ProductStorageHelper firebaseHelper;
+    private EditText edittext_quantity,edittext_price,editText_seller;
     private Button button_import;
     private MaterialBetterSpinner unit_materialDesignSpinner;
     private String string_quantity,string_seller,string_unit,string_item,string_price;
     private Integer import_qty,import_price,import_children_count;
+    private ArrayList<String> itemList = new ArrayList<>();
+    private AutoCompleteTextView autoCompleteItemName;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +65,7 @@ public class ImportActivity extends AppCompatActivity implements View.OnClickLis
 
     private void findViews()
     {
-        edittext_item = (EditText)findViewById(R.id.item);
+        autoCompleteItemName = (AutoCompleteTextView) findViewById(R.id.item);
         edittext_quantity = (EditText)findViewById(R.id.qty);
         edittext_price = (EditText)findViewById(R.id.price);
         editText_seller = (EditText)findViewById(R.id.seller);
@@ -76,6 +81,11 @@ public class ImportActivity extends AppCompatActivity implements View.OnClickLis
         unit_materialDesignSpinner.setTypeface(tf);
 
         button_import.setOnClickListener( this );
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>
+                (this,android.R.layout.simple_list_item_1,getItemList());
+        autoCompleteItemName.setAdapter(adapter);
+        autoCompleteItemName.setThreshold(0);
     }
 
     @Override
@@ -95,7 +105,7 @@ public class ImportActivity extends AppCompatActivity implements View.OnClickLis
 
     private void getData()
     {
-        string_item = edittext_item.getText().toString().toUpperCase();
+        string_item = autoCompleteItemName.getText().toString().toUpperCase();
         string_price = edittext_price.getText().toString();
         string_quantity = edittext_quantity.getText().toString();
         string_seller = editText_seller.getText().toString();
@@ -140,7 +150,7 @@ public class ImportActivity extends AppCompatActivity implements View.OnClickLis
     private void clearEditText()
     {
         edittext_quantity.setText("");
-        edittext_item.setText("");
+        autoCompleteItemName.setText("");
         editText_seller.setText("");
         edittext_price.setText("");
         unit_materialDesignSpinner.clearFocus();
@@ -211,5 +221,26 @@ public class ImportActivity extends AppCompatActivity implements View.OnClickLis
 
                 }
             });
+    }
+
+    private ArrayList<String> getItemList()
+    {
+        DatabaseReference getItemListener = databaseReference.child(HomeActivity.USERMAIL).child(Constant.PRODUCT);
+        getItemListener.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot dsp : dataSnapshot.getChildren()) {
+                    itemList.add(String.valueOf(dsp.getKey())); //add result into array list
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        return itemList;
     }
 }
