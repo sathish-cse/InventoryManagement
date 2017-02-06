@@ -2,6 +2,7 @@ package tech42.sathish.inventorymanagement.activity;
 
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -32,8 +33,7 @@ public class DashboardActivity extends ActionBarActivity {
 
     private DatabaseReference databaseReference;
     private GridLayoutManager gridLayoutManager;
-    Integer importQuantiy, exportQuantity, importPrice, exportPrice;
-    String value;
+    Integer computerProductsCount = 0, chemistryProductsCount = 0, storeProductsCount = 0, totalProductsCount = 0;
 
     @Override
     protected final void onCreate(Bundle savedInstanceState) {
@@ -41,12 +41,16 @@ public class DashboardActivity extends ActionBarActivity {
         setContentView(R.layout.activity_dashboard);
 
         initializeFirebaseDatabase();
-        initializeRecyclerViews();
+
     }
 
     private void initializeFirebaseDatabase()
     {
-        databaseReference = FirebaseDatabase.getInstance().getReference();
+        databaseReference = FirebaseDatabase.getInstance().getReference().child(HomeActivity.USERMAIL);
+        getstoreProductsCount();
+        getcomputerProductsCount();
+        getchemistryProductsCount();
+
     }
 
     private void initializeRecyclerViews()
@@ -60,48 +64,92 @@ public class DashboardActivity extends ActionBarActivity {
 
         DashboardAdapter rcAdapter = new DashboardAdapter(DashboardActivity.this,rowListItem);
         rView.setAdapter(rcAdapter);
+        rcAdapter.notifyDataSetChanged();
     }
 
     private List<DashboardItemObject> getAllItem(){
 
         List<DashboardItemObject> allItems = new ArrayList<DashboardItemObject>();
-        allItems.add(new DashboardItemObject(Constant.IMPORTQTY, "87"));
-        allItems.add(new DashboardItemObject(Constant.EXPORTQTY, "1060"));
-        allItems.add(new DashboardItemObject(Constant.IMPORTPRICE ,"150"));
-        allItems.add(new DashboardItemObject(Constant.EXPORTPRICE, "5768"));
+        allItems.add(new DashboardItemObject(Constant.COMPUTERLAB, computerProductsCount.toString()));
+        allItems.add(new DashboardItemObject(Constant.CHEMISTRYLAB, chemistryProductsCount.toString()));
+        allItems.add(new DashboardItemObject(Constant.STORELAB , storeProductsCount.toString()));
+        allItems.add(new DashboardItemObject(Constant.TOTAL, totalProductsCount.toString()));
         return allItems;
     }
 
-    @Override
-    public final boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.search_main, menu);
-        SearchManager searchManager =
-                (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        final SearchView searchView = (SearchView) menu.findItem(R.id.menu_search).getActionView();
-        searchView.setSearchableInfo(
-                searchManager.getSearchableInfo(getComponentName()));
 
-        SearchView.OnQueryTextListener textChangeListener = new SearchView.OnQueryTextListener() {
+    private void getcomputerProductsCount()
+    {
+        DatabaseReference getItemListener = databaseReference.child(Constant.COMPUTER).child(Constant.PRODUCT);
+        getItemListener.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public boolean onQueryTextChange(String newText) {
-                // this is your adapter that will be filtered
-                return true;
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()){
+                    computerProductsCount = (int) dataSnapshot.getChildrenCount();
+                }
+                else
+                {
+                    computerProductsCount = 0;
+                }
             }
 
             @Override
-            public boolean onQueryTextSubmit(String result) {
-                // this is your adapter that will be filtered
+            public void onCancelled(DatabaseError databaseError) {
 
-                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.hideSoftInputFromWindow(searchView.getWindowToken(), 0);
-                return true;
             }
-        };
-        searchView.setOnQueryTextListener(textChangeListener);
-
-        return super.onCreateOptionsMenu(menu);
+        });
     }
+
+    private void getchemistryProductsCount()
+    {
+        DatabaseReference getItemListener = databaseReference.child(Constant.CHEMISTRY).child(Constant.PRODUCT);
+        getItemListener.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()){
+                    chemistryProductsCount = (int) dataSnapshot.getChildrenCount();
+                    totalProductsCount = chemistryProductsCount + computerProductsCount + storeProductsCount;
+                    initializeRecyclerViews();
+                }
+                else
+                {
+                    chemistryProductsCount = 0;
+                    totalProductsCount = chemistryProductsCount + computerProductsCount + storeProductsCount;
+                    initializeRecyclerViews();
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
+    private void getstoreProductsCount()
+    {
+        DatabaseReference getItemListener = databaseReference.child(Constant.STORE).child(Constant.PRODUCT);
+        getItemListener.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()){
+                    storeProductsCount = (int) dataSnapshot.getChildrenCount();
+                }
+                else
+                {
+                    storeProductsCount = 0;
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
 
 
 }

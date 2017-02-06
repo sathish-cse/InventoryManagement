@@ -21,12 +21,15 @@ public class Constant {
     public static final String[] quantity_Unit_Array = {"Number","Kg","Gram","Litre","Ml"};
     public static final String ITEMDETAILS = "Item Details";
     public static final String ITEMSEARCH = "Item Search";
-    public static final String IMPORTQTY = "Import Qty";
-    public static final String EXPORTQTY = "Export Qty";
-    public static final String IMPORTPRICE = "Import Price";
-    public static final String EXPORTPRICE = "Export Price";
+    public static final String COMPUTERLAB = "Computer Lab";
+    public static final String CHEMISTRYLAB = "Chemistry Lab";
+    public static final String STORELAB = "Store";
+    public static final String TOTAL = "Total";
     public static final String EMPTY = "";
     public static String STORAGE = "";
+    public static final String COMPUTER = "computer";
+    public static final String CHEMISTRY = "chemistry";
+    public static final String STORE = "store";
 
 
 }

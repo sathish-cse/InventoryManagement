@@ -53,7 +53,7 @@ public class ExportActivity extends AppCompatActivity implements View.OnClickLis
         setContentView(R.layout.activity_export);
 
         initializeFirebaseDatabase();
-        findViews();
+        initializeViews();
         getItemCount();
         showSearchDialog();
 
@@ -65,7 +65,7 @@ public class ExportActivity extends AppCompatActivity implements View.OnClickLis
         firebaseHelper = new ProductStorageHelper(databaseReference);
     }
 
-    private void findViews()
+    private void initializeViews()
     {
         edittext_item = (EditText)findViewById(R.id.item);
         edittext_quantity = (EditText)findViewById(R.id.qty);

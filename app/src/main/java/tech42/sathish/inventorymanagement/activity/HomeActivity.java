@@ -76,7 +76,8 @@ public class HomeActivity extends AppCompatActivity {
 
                 switch (id){
                     case R.id.home:
-                        finish();
+                        Intent home = new Intent(HomeActivity.this, LabSelectionActivity.class);
+                        startActivity(home);
                         break;
                     case R.id.logout:
                         logout();
@@ -88,6 +89,8 @@ public class HomeActivity extends AppCompatActivity {
 
         View navigationHeaderView = navigationView.getHeaderView(0);
         TextView txt_Email = (TextView) navigationHeaderView.findViewById(R.id.id);
+        TextView txt_Title = (TextView) navigationHeaderView.findViewById(R.id.name);
+        txt_Title.setText(Constant.STORAGE);
         txt_Email.setText(firebaseAuth.getCurrentUser().getEmail());
 
         drawerLayout = (DrawerLayout)findViewById(R.id.drawer);
@@ -140,6 +143,12 @@ public class HomeActivity extends AppCompatActivity {
     {
         Intent gotoLogin = new Intent(HomeActivity.this,LoginActivity.class);
         startActivity(gotoLogin);
+        finish();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
         finish();
     }
 }

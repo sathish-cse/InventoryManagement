@@ -55,7 +55,6 @@ public class ProductsActivity extends AppCompatActivity {
         mProgressBarForProducts = (ProgressBar)findViewById(R.id.progress_bar_users);
         mProductRecyclerView = (RecyclerView)findViewById(R.id.recycler_view_users);
 
-
         initializeAuthInstance();
         initializeUsersDatabase();
         initializeUserRecyclerView();
@@ -63,7 +62,6 @@ public class ProductsActivity extends AppCompatActivity {
         initializesetAuthListener();
 
     }
-
 
     private void initializeAuthInstance() {
         mAuth = FirebaseAuth.getInstance();

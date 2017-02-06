@@ -37,11 +37,12 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        findViews();
-        getInstance();
+
+        initializeViews();
+        initializeInstance();
     }
 
-    private void findViews() {
+    private void initializeViews() {
         editText_email = (EditText) findViewById(R.id.email);
         editText_password = (EditText) findViewById(R.id.password);
         button_register = (Button) findViewById(R.id.register);
@@ -57,7 +58,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         }
     }
 
-    private void getInstance()
+    private void initializeInstance()
     {
         // Get Instance for firebase authentication
         firebaseAuth = FirebaseAuth.getInstance();

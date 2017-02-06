@@ -2,6 +2,7 @@ package tech42.sathish.inventorymanagement.customadapter;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -100,7 +101,7 @@ public class ProductCustomAdapter extends RecyclerView.Adapter<ProductCustomAdap
         @Override
         public void onClick(View view) {
 
-            Product product = products.get(getLayoutPosition());
+            final Product product = products.get(getLayoutPosition());
 
             final Dialog dialog = new Dialog(context);
 
@@ -133,7 +134,23 @@ public class ProductCustomAdapter extends RecyclerView.Adapter<ProductCustomAdap
                     dialog.dismiss();
                 }
             });
+
+            //adding button click event
+            Button shareButton = (Button) dialog.findViewById(R.id.btn_share);
+            shareButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent sendIntent = new Intent();
+                    sendIntent.setAction(Intent.ACTION_SEND);
+                    sendIntent.putExtra(Intent.EXTRA_TEXT, " Item : " + product.getItem() + "\n Quantity : " + product.getQuantity() +" "+ product.getUnit()
+                    + "\n Price : " + product.getPrice() + "\n Seller : " + product.getSeller() + "\n Date : " + product.getDate());
+                    sendIntent.setType("text/plain");
+                    sendIntent.setPackage("com.whatsapp");
+                    context.startActivity(sendIntent);
+                }
+            });
             dialog.show();
+
         }
 
     }

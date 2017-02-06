@@ -52,7 +52,7 @@ public class ImportActivity extends AppCompatActivity implements View.OnClickLis
         setContentView(R.layout.activity_import);
 
         initializeFirebaseDatabase();
-        findViews();
+        initializeViews();
         getItemCount();
 
     }
@@ -63,7 +63,7 @@ public class ImportActivity extends AppCompatActivity implements View.OnClickLis
         firebaseHelper = new ProductStorageHelper(databaseReference);
     }
 
-    private void findViews()
+    private void initializeViews()
     {
         autoCompleteItemName = (AutoCompleteTextView) findViewById(R.id.item);
         edittext_quantity = (EditText)findViewById(R.id.qty);

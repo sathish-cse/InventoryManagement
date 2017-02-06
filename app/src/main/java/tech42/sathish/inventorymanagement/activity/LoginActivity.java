@@ -37,8 +37,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        findViews();
-        getInstance();
+        initializeViews();
+        initializeInstance();
         checkUserStatus();
     }
 
@@ -51,7 +51,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
     }
 
-    private void getInstance()
+    private void initializeInstance()
     {
         // Get Instance for firebase authentication
         firebaseAuth = FirebaseAuth.getInstance();
@@ -60,7 +60,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         databaseReference = FirebaseDatabase.getInstance().getReference();
     }
 
-    private void findViews() {
+    private void initializeViews() {
 
         email = (EditText) findViewById(R.id.email);
         password = (EditText) findViewById(R.id.password);
