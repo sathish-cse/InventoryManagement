@@ -56,6 +56,10 @@ dependencies {
     // Material spinner
     compile 'com.weiwangcn.betterspinner:library-material:1.1.0'
 
+    // Unit testing dependencies.
+    testCompile 'junit:junit:' + rootProject.junitVersion;
+    testCompile 'org.mockito:mockito-core:' + rootProject.mockitoVersion;
+
 }
 
 apply plugin: 'com.google.gms.google-services'

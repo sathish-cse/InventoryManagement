@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "403645265553",
+    "firebase_url": "https://mineral-beaker-153716.firebaseio.com",
+    "project_id": "mineral-beaker-153716",
+    "storage_bucket": "mineral-beaker-153716.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:403645265553:android:2bfc545ed7269cb6",
+        "android_client_info": {
+          "package_name": "tech42.sathish.inventorymanagement"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "403645265553-0tcjashc25gu3nl43icd2c2qldqq5ptj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-BNFBi4nfXXykDcyd21CMnaRlHq0rJzE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

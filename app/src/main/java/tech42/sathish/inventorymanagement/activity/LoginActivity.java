@@ -45,7 +45,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private void checkUserStatus()
     {
         if(firebaseAuth.getCurrentUser()!=null ) {
-            Intent intent = new Intent(LoginActivity.this,HomeActivity.class);
+            Intent intent = new Intent(LoginActivity.this,LabSelectionActivity.class);
             startActivity(intent);
             finish();
         }
@@ -139,7 +139,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void goToMainActivity() {
-        Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+        Intent intent = new Intent(LoginActivity.this, LabSelectionActivity.class);
         startActivity(intent);
     }
 

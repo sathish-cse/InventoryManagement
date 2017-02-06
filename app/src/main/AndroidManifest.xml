@@ -33,12 +33,15 @@
             android:name=".activity.ExportTransactionsActivity"
             android:label="Export Transaction"
             android:theme="@style/AppTheme2" />
-        <activity android:name=".activity.DashboardActivity"
+        <activity
+            android:name=".activity.DashboardActivity"
             android:label="Dashboard"
-            android:theme="@style/Theme.MyCompatTheme" >
+            android:theme="@style/Theme.MyCompatTheme">
+
             <!-- to identify this activity as "searchable" -->
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
 
@@ -46,6 +49,7 @@
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
         </activity>
+        <activity android:name=".activity.LabSelectionActivity"></activity>
     </application>
 
 </manifest>

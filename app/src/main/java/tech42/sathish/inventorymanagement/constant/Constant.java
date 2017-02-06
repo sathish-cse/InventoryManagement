@@ -26,6 +26,7 @@ public class Constant {
     public static final String IMPORTPRICE = "Import Price";
     public static final String EXPORTPRICE = "Export Price";
     public static final String EMPTY = "";
+    public static String STORAGE = "";
 
 
 }
