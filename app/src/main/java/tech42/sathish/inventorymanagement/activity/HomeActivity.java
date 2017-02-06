@@ -78,6 +78,7 @@ public class HomeActivity extends AppCompatActivity {
                     case R.id.home:
                         Intent home = new Intent(HomeActivity.this, LabSelectionActivity.class);
                         startActivity(home);
+                        finish();
                         break;
                     case R.id.logout:
                         logout();
