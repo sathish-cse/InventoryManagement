@@ -42,7 +42,7 @@ public class ProductStorageHelper {
         {
             try
             {
-                db.child(HomeActivity.USERMAIL).child(Constant.PRODUCT).child(product.getItem()).setValue(product);
+                db.child(HomeActivity.USERMAIL).child(Constant.STORAGE).child(Constant.PRODUCT).child(product.getItem()).setValue(product);
                 saved=true;
             }catch (DatabaseException e)
             {
@@ -63,7 +63,7 @@ public class ProductStorageHelper {
         {
             try
             {
-                db.child(HomeActivity.USERMAIL).child(Constant.IMPORT_TRANSACTIONS).child(count.toString()).setValue(product);
+                db.child(HomeActivity.USERMAIL).child(Constant.STORAGE).child(Constant.IMPORT_TRANSACTIONS).child(count.toString()).setValue(product);
                 saved=true;
             }catch (DatabaseException e)
             {
@@ -84,7 +84,7 @@ public class ProductStorageHelper {
         {
             try
             {
-                db.child(HomeActivity.USERMAIL).child(Constant.EXPORT_TRANSACTIONS).child(count.toString()).setValue(product);
+                db.child(HomeActivity.USERMAIL).child(Constant.STORAGE).child(Constant.EXPORT_TRANSACTIONS).child(count.toString()).setValue(product);
                 saved=true;
             }catch (DatabaseException e)
             {
@@ -100,7 +100,7 @@ public class ProductStorageHelper {
     {
             try
             {
-                db.child(HomeActivity.USERMAIL).child(Constant.PRODUCT).child(product.getItem()).setValue(product);
+                db.child(HomeActivity.USERMAIL).child(Constant.STORAGE).child(Constant.PRODUCT).child(product.getItem()).setValue(product);
                 updated=true;
             }catch (DatabaseException e)
             {

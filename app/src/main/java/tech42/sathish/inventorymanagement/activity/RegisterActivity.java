@@ -151,7 +151,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     // Go to next Activity
     private void goToMainActivity() {
-        Intent intent = new Intent(RegisterActivity.this, HomeActivity.class);
+        Intent intent = new Intent(RegisterActivity.this, LabSelectionActivity.class);
         startActivity(intent);
     }
 

@@ -51,34 +51,34 @@ public class ExportTransactionsActivity extends AppCompatActivity {
         mProgressBarForProducts = (ProgressBar)findViewById(R.id.progress_bar_users);
         mProductRecyclerView = (RecyclerView)findViewById(R.id.recycler_view_users);
 
-        setAuthInstance();
-        setUsersDatabase();
-        setUserRecyclerView();
-        setUsersKeyList();
-        setAuthListener();
+        initializeAuthInstance();
+        initializeUsersDatabase();
+        initializeUserRecyclerView();
+        initializeUsersKeyList();
+        initializeAuthListener();
 
     }
 
-    private void setAuthInstance() {
+    private void initializeAuthInstance() {
         mAuth = FirebaseAuth.getInstance();
     }
 
-    private void setUsersDatabase() {
-        mProductDatabaseReference = FirebaseDatabase.getInstance().getReference().child(HomeActivity.USERMAIL).child(Constant.EXPORT_TRANSACTIONS);
+    private void initializeUsersDatabase() {
+        mProductDatabaseReference = FirebaseDatabase.getInstance().getReference().child(HomeActivity.USERMAIL).child(Constant.STORAGE).child(Constant.EXPORT_TRANSACTIONS);
     }
 
-    private void setUserRecyclerView() {
+    private void initializeUserRecyclerView() {
         ExportTransactionCustomAdapter = new ExportTransactionCustomAdapter(this, new ArrayList<Product>());
         mProductRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mProductRecyclerView.setHasFixedSize(true);
         mProductRecyclerView.setAdapter(ExportTransactionCustomAdapter);
     }
 
-    private void setUsersKeyList() {
+    private void initializeUsersKeyList() {
         mUsersKeyList = new ArrayList<String>();
     }
 
-    private void setAuthListener() {
+    private void initializeAuthListener() {
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {

@@ -42,7 +42,7 @@ public class ProductItemList {
     }
 
     private void initializeUsersDatabase() {
-        mProductDatabaseReference = FirebaseDatabase.getInstance().getReference().child(HomeActivity.USERMAIL).child(Constant.PRODUCT);
+        mProductDatabaseReference = FirebaseDatabase.getInstance().getReference().child(HomeActivity.USERMAIL).child(Constant.STORAGE).child(Constant.PRODUCT);
     }
 
     private void initializeUsersKeyList() {

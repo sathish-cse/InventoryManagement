@@ -168,7 +168,7 @@ public class ImportActivity extends AppCompatActivity implements View.OnClickLis
     private void getItemCount()
     {
         try {
-            DatabaseReference getChildListener = databaseReference.child(HomeActivity.USERMAIL).child(Constant.IMPORT_TRANSACTIONS);
+            DatabaseReference getChildListener = databaseReference.child(HomeActivity.USERMAIL).child(Constant.STORAGE).child(Constant.IMPORT_TRANSACTIONS);
             getChildListener.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
@@ -196,7 +196,7 @@ public class ImportActivity extends AppCompatActivity implements View.OnClickLis
 
     private void getItemDetails()
     {
-            DatabaseReference getChildListener = databaseReference.child(HomeActivity.USERMAIL).child(Constant.PRODUCT).child(string_item.toUpperCase());
+            DatabaseReference getChildListener = databaseReference.child(HomeActivity.USERMAIL).child(Constant.STORAGE).child(Constant.PRODUCT).child(string_item.toUpperCase());
             getChildListener.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
@@ -225,7 +225,7 @@ public class ImportActivity extends AppCompatActivity implements View.OnClickLis
 
     private ArrayList<String> getItemList()
     {
-        DatabaseReference getItemListener = databaseReference.child(HomeActivity.USERMAIL).child(Constant.PRODUCT);
+        DatabaseReference getItemListener = databaseReference.child(HomeActivity.USERMAIL).child(Constant.STORAGE).child(Constant.PRODUCT);
         getItemListener.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
